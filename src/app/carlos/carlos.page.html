@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Carlos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6" class="ion-text-center">
+      <h1>Carlos Vinícius Fravoini</h1>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6" class="ion-text-center">
+      <h2>Fatec - ADS 2° Ano</h2>
+    </ion-col>
+  </ion-row>
+
+  <ion-segment value="sobre" (ionChange)="trocar($event)">
+    <ion-segment-button value="escolaridade">
+      <ion-label>Escolaridade</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="conhecimentos">
+    <ion-label>conhecimentos</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="sobre">
+    <ion-label>Sobre mim</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container *ngIf="this.selected === 'escolaridade'">
+    <ion-row>
+      <ion-col>
+        <h3>Graduado no 2° Grau na Etec Sales Gomes</h3>
+        <h3>Técnico em Desenvolvimento de Sistemas</h3>
+        <h3>Cursando Análise e Desenvolvimento de Sistemas</h3>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6" class="ion-text-center">
+      <p><a href="https://github.com/Vviniciuss13">GitHub</a></p>
+    </ion-col>
+    <ion-col>
+      <p><a href="https://ogimg.infoglobo.com.br/in/25024797-3d1-e8d/FT1086A/shrek.jpg">sei la man</a></p>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="ion-text-center"> Feito por Carlinhos</ion-title>
+  </ion-toolbar>
+</ion-footer>
