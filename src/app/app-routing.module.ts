@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'desenvolvedores',
     loadChildren: () => import('./desenvolvedores/desenvolvedores.module').then( m => m.DesenvolvedoresPageModule)
+  },
+  {
+    path: 'diogo',
+    loadChildren: () => import('./diogo/diogo.module').then( m => m.DiogoPageModule)
   }
 ];
 
