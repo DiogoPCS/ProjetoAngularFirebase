@@ -12,7 +12,7 @@ export class CarlosPage implements OnInit {
   ngOnInit() {
   }
 
-  selected: any;
+  selected: any = 'escolaridade';
 
   trocar(event: any){
 
