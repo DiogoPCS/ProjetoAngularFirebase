@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'desenvolvedores',
     loadChildren: () => import('./desenvolvedores/desenvolvedores.module').then( m => m.DesenvolvedoresPageModule)
+  },  {
+    path: 'luizfabiano',
+    loadChildren: () => import('./luizfabiano/luizfabiano.module').then( m => m.LuizfabianoPageModule)
   }
+
 ];
 
 @NgModule({
