@@ -12,10 +12,10 @@ export class CarlosPage implements OnInit {
   ngOnInit() {
   }
 
-  selected: any = 'escolaridade';
+  selected: any = "conhecimentos";
 
   trocar(event: any){
-
+    this.selected = event.detail.value;
   }
 
 }
