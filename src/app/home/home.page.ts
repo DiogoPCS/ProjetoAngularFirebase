@@ -35,7 +35,7 @@ export class HomePage {
 
     getData(){
       this.isLoading = true;
-      fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+      fetch('http://projeto/apiAngular/')
       .then(response => response.json())
       .then(dados => { 
         console.log(dados);
