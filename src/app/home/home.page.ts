@@ -32,6 +32,23 @@ export class HomePage {
     private _message: MessageService
   ) { }
 
+    getData(){
+      this.isLoading = true;
+      fetch('http://localhost/api_fatec/index.php')
+      .then(response => response.json())
+      .then(dados => {
+          console.log(dados)
+      })
+      .catch(err => {
+        console.log("Erro de Solicitação: " + err)
+      })
+      .finally(() => {
+        this.isLoading = false;
+        console.log("Requisição Finalizada")
+      })
+
+    }
+
   criarConta(dados: any){
     this._authenticate.register(dados.email, dados.password)
   }

@@ -8,6 +8,13 @@
 
 <ion-content [fullscreen]="true">
 
+  <ion-row>
+    <ion-col size="12" class="ion-text-center">
+      <ion-button (click)="getData()">Pegar dados da API</ion-button>
+      <ng-container *ngIf="this.isLoading"><ion-spinner></ion-spinner></ng-container>
+    </ion-col>
+  </ion-row>
+
   <!-- FORMULÁRIO CRIAR CONTA -->
   <ion-row class="ion-justify-content-center">
     <ion-col size="12" size-lg="6">
