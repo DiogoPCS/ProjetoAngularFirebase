@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>clientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-row>
+    <ion-col size="12">
+      <ion-button (click)="this.getClientes()">Listar Clientes</ion-button>
+      <ion-spinner *ngIf="this.isLoading"></ion-spinner>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
