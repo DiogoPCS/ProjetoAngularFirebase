@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Learning Endpoints</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-row>
+    <ion-col>
+      <ng-container *ngFor="let funcionario of this.funcionarios">
+        <ion-item>
+          <ion-label>{{ funcionario.Nome }} - {{ funcionario.Cargo }}  </ion-label>
+          <ion-icon name="close-circle-outline" (click)="remover(funcionario.CodFun
+          )"></ion-icon>
+        </ion-item>
+      </ng-container>
+      <!-- <ion-list></ion-list> -->
+    </ion-col>
+  </ion-row>
+</ion-content>
