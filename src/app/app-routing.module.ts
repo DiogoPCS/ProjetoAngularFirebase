@@ -10,7 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'endpoint',
+    loadChildren: () => import('./endpoint/endpoint.module').then( m => m.EndpointPageModule)
   }
+
 ];
 
 @NgModule({
