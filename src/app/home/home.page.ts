@@ -14,7 +14,7 @@ import { MessageService } from '../services/message.service';
 export class HomePage {
   pessoa = {
     foto:'https://professionalmoron.com/wp-content/uploads/2012/05/alpaca-985158_640.jpg',
-    nome:'jajejijo ju',
+    nome:'Leticia Foelho',
     objetivo:'Programador HTML & CSS',
     contato:{
       email:'jujaja@gbail.com',
