@@ -10,6 +10,51 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  pessoa = {
+    foto: 'https://professionalmoron.com/wp-content/uploads/2012/05/alpaca-985158_640.jpg',
+    nome: 'Pombinha da Paz silva',
+    objetivo: 'Programador HTML & CSS',
+    contato: {    
+      email: 'Pombinha@hotmail.com',
+      telefone: '(11) 996666666',
+      github: 'github.com/pombinha',
+      linkedin: 'linkedin.com/pombinha',
+    },
+
+    softskills: [
+      'Comunicação',
+      'Produtividade',
+      'Trabalho em Grupo',
+    ],
+
+    formacao: [
+      {
+        ano_inicio: '2022',
+        ano_fim: '2024',
+        instituicao: 'Etec Sales Gomes',
+        curso: 'Tecnico Desenvolvimento de Sistemas',
+      },
+      {
+        ano_inicio: '2025',
+        ano_fim: '2027',
+        instituicao: 'Faculdade de Tecnologia FATEC',
+        curso: 'Superior em Análise e Desenvolvimento de Sistemas',
+      }
+    ],
+
+    Progeto:[
+      {
+        ano: '2023',
+        instituicao: 'Etec Sales Gomes',
+        nome_projeto: 'Etec de Portas abertas',
+        descricao: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias eius natus atque cupiditate eum quidem quas voluptatibus dolore nisi. Nisi nostrum eveniet ratione vel consectetur commodi dolores culpa necessitatibus architecto.',
+      }
+    ]
+
+
+
+
+  }
 
   constructor(){ }
 }
