@@ -1,13 +1,111 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
+ 
+<!-- Header -->
+  <ion-row>
+    <ion-col size="12" size-lg="4">
+<img src="{{this.perfil.foto}}" alt="imgPerfil">
+    </ion-col>
 
-  
+    <ion-col size="12" size-lg="8">
+
+        <ion-item>
+          <h1>{{this.perfil.nome}}</h1>
+        </ion-item>
+        <ion-item>
+          <h4>{{this.perfil.user}}</h4>
+        </ion-item>
+        <ion-item>
+          <h4>{{this.perfil.profissao}}</h4>
+        </ion-item>
+        <ion-item>
+          <h4>{{this.perfil.idioma}}</h4>
+        </ion-item>
+        <ion-item>
+          <h4>{{this.perfil.cidade}}</h4>
+        </ion-item>
+        <ion-item>
+          <h4>{{this.perfil.desde}}</h4>
+        </ion-item>
+    </ion-col>
+  </ion-row>
+
+<!-- Biografia -->
+ <ion-row size="4">
+  <h3>Biografia</h3>
+ </ion-row>
+ <ion-row>
+  <ion-col>
+    <p>{{this.perfil.bio}}</p>
+  </ion-col>
+ </ion-row>
+
+<!-- Info --> 
+ <ion-row>
+  <ion-col>
+    <ion-card>
+      <ion-item>
+        {{this.perfil.metricas.curtidas}}
+      </ion-item>
+      <ion-item>
+        <h4>Curtidas</h4>
+      </ion-item>
+    </ion-card>
+  </ion-col>
+  <ion-col>
+    <ion-card>
+      <ion-item>
+        {{this.perfil.metricas.seguidores}}
+      </ion-item>
+      <ion-item>
+        <h4>Seguidores</h4>
+      </ion-item>
+    </ion-card>
+  </ion-col>
+  <ion-col>
+    <ion-card>
+      <ion-item>
+        {{this.perfil.metricas.amigos}}
+      </ion-item>
+      <ion-item>
+        <h4>Seguindo</h4>
+      </ion-item>
+    </ion-card>
+  </ion-col>
+ </ion-row>
+
+<!-- Amigos --> 
+<ion-row>
+  <ion-col>
+    <ion-card>
+      <ion-item>
+        <h5>{{this.perfil.postAmgs.nome}} {{this.perfil.postAmgs.user}}</h5>
+      </ion-item>
+      <ion-item>
+        {{this.perfil.postAmgs.user}}
+      </ion-item>
+    </ion-card>
+  </ion-col>
+  <ion-col>
+    <ion-card>
+      <ion-item>
+        {{this.perfil.metricas.seguidores}}
+      </ion-item>
+      <ion-item>
+        <h4>Seguidores</h4>
+      </ion-item>
+    </ion-card>
+  </ion-col>
+  <ion-col>
+    <ion-card>
+      <ion-item>
+        {{this.perfil.metricas.amigos}}
+      </ion-item>
+      <ion-item>
+        <h4>Seguindo</h4>
+      </ion-item>
+    </ion-card>
+  </ion-col>
+ </ion-row>
 
 </ion-content>
