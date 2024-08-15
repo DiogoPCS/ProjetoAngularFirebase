@@ -1,0 +1,29 @@
+.perfil-pic{
+    border-radius: 32px;
+   outline: 3px solid pink;
+margin: auto;
+width: 335px;
+}
+
+.biography{
+   margin-left: 30px;
+}
+
+.stats{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    
+}
+
+.fotocomentario{
+    width: 45px;
+    border-radius: 15px;
+    margin-right: 5px;
+}
+
+.card{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
