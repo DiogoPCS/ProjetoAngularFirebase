@@ -82,7 +82,21 @@
     </ion-col>
   </ion-row>
 
-  
+  <ion-row classs="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <ion-item>
+        <ion-label>Deixe me um recado</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Assunto da Mensagem" [(ngMode)]="this.recado.assunto"></ion-input>
+      </ion-item>
+
+      <ion-button (click)="enviar()">Enviar Recado</ion-button>
+    </ion-col>
+  </ion-row>
+
+  </ion-row>
 
 </ion-content>
 
