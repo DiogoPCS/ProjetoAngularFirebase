@@ -1,13 +1,46 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- iontext center coluna
+ion justify para linha -->
 
 <ion-content [fullscreen]="true">
+  <!-- menu segmentos -->
+<ion-row  class="ion-justify-content-center">
+<ion-col size="12" size-lg="5">
+  <!-- value no ion-segment ativará a aba escolhida primeiro no caso usuarios -->
+<ion-segment value="usuarios" (ionChange)="trocar($event)"> 
 
+  <!-- é uma guia para aba -->
+   <ion-segment-button value="usuarios">Usuário</ion-segment-button>
+   <ion-segment-button value="treinos">Treinos</ion-segment-button>
+
+</ion-segment>
+
+</ion-col>
+
+
+
+</ion-row>
+<!-- lista de usuarios -->
+<ion-row class="ion-justify-content-center" *ngIf="this.segments=='usuarios'">
+  <ion-col size="12" size-lg="5">
+    
+    <ng-container *ngFor="let user of this.usuarios" >
+     <ion-item color="secondary">
+      <ion-label color="tertiary">
+        <h2>{{user.nome}}</h2>
+        <h3>Idade: {{user.idade}}</h3>
+        <h3>Genero: {{user.genero}}</h3>
+      </ion-label>
+     </ion-item>
+    </ng-container>
+    
+  </ion-col>
+
+</ion-row>
+<!-- lista de treinos -->
+<ion-row class="ion-justify-content-center" *ngIf="this.segments=='treinos'"  >
+  <ion-col size="12" size-lg="5" > treinos </ion-col>
+
+</ion-row>
   
 
 </ion-content>
