@@ -11,17 +11,5 @@ import { MessageService } from '../services/message.service';
 })
 export class HomePage {
 
-  recado = {
-    assunto: null,
-    mensagem: null
-  }
-  
-  constructor(
-    private crudService: CrudService 
-  ){}
-
-  enviar(){
-    this.crudService.insert(this.recado, 'recados');
-  }
 
 }
