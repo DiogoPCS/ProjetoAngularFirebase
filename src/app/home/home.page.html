@@ -1,13 +1,92 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
 
-  
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="8" size-xl="6">
 
+      <!-- CABEÇALHO -->
+       <ion-row>
+        <ion-col size="12" size-lg="4">
+          <img src="{{ this.pessoa.foto }}" class="foto-perfil">
+        </ion-col>
+        <ion-col size="12" size-lg="8">
+          <ion-item>
+          <h2 class="titulo-nome">{{ this.pessoa.nome }}</h2>
+          </ion-item>
+          </ion-col>
+          <ion-item>
+            <h3 class="titulo-funcao">{{ this.pessoa.ocupacao }}</h3>
+          </ion-item>
+          <ion-item>
+            <h3 class="titulo-funcao">{{ this.pessoa.email }}</h3>
+          </ion-item>
+          <ion-item>
+          <h3 class="titulo-funcao">{{ this.pessoa.lingua }}</h3>
+          </ion-item>
+          <ion-item>
+          <h3 class="titulo-funcao">{{ this.pessoa.cep }}</h3>
+          </ion-item>
+          <ion-item>
+          <h3 class="titulo-funcao">{{ this.pessoa.atuacao }}</h3>
+          </ion-item>
+        </ion-col>
+       </ion-row>
+
+       <ion-row>
+        <ion-col size="4" class="ion-text-left">
+          <h3>Biografia</h3>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <p>{{ trabalho.desc }}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="10">
+          <ion-item-divider></ion-item-divider>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="4">
+        <ion-item>
+          <h3>{{ conta.num }}</h3>
+        </ion-col>
+        <ion-item>
+          <h4>{{ conta.curtida }}</h4>
+        </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item>
+            <h3>{{ conta.num }}</h3>
+          </ion-col>
+          <ion-item>
+            <h4>{{ conta.seguindo }}</h4>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item>
+            <h3>{{ conta.num }}</h3>
+          </ion-col>
+          <ion-item>
+            <h4>{{ conta.amigos }}</h4>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="10">
+          <ion-item-divider></ion-item-divider>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="4" class="ion-text-left">
+          <h3>Postagens de Amigos</h3>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  
 </ion-content>
