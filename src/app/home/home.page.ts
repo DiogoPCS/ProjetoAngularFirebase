@@ -11,37 +11,30 @@ import { MessageService } from '../services/message.service';
 })
 export class HomePage {
   // variaveis
-  pessoa = {
+  perfil = {
     foto : 'https://avatars.githubusercontent.com/u/162513613?s=400&u=e0a9aa78b8458783075c9078ac379e73d298418d&v=4',
     nome : 'Bruno Mendes de Morais',
-    objetivo : 'Programador Front-end',
-    contato : {
-      email: 'mendesdemoraisbruno@gmail.com',
-      telefone: '(15)052684899',
-      github:'https://github.com/BrunoMendesMorais',
-      linkedin:'brunomendesdemorais'
-    },
-    softskills:[
-      'comunicação',
-      'proatividade',
-      'trabalho em grupo',
-      'resiliencia'
-    ],
-    formacao:[
-      {
-        anoInicio:'2023',
-        anoFim:'2024',
-        instituicao:'Etec Sales Gomes',
-        curso:'Desenvolvimento de Sistema'
-      },
-      {
-        anoInicio:'2020',
-        anoFim:'2024',
-        instituicao:'Barão de surui',
-        curso:'Ensino médio'
-      }
-    ]
+    profisao : 'Programador Front-end',
+    mensao: '@Bruno',
+    lingua : 'Portugues',
+    cidade : 'Tatui/SP',
+    data: 'desde ontem',
+    bio: 'desde ontem criando codigos com auxilio do chat gpt',
+    informacao: {
+      curtidas: '32.6k',
+      seguindo: '1.9k',
+      amigos : '2.1k'
+    }
+    
   }
 
+  amigos = {
+    foto : 'https://avatars.githubusercontent.com/u/162513613?s=400&u=e0a9aa78b8458783075c9078ac379e73d298418d&v=4',
+    nome : 'euMesmo',
+    mensao:'@mesmo',
+    comentario:'socorro',
+    comentario2:'oq acontece se colocar a chave na tomada',
+    comentario1:'achei uma tomada e uma chave'
+  }
 
   }
