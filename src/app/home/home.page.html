@@ -1,13 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
+   <!-- size: mobile; size-lg: desktop -->
 
-  
+   <!-- menu segmentos -->
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="5" class="ion-text-center">
+      <ion-segment value="usuarios" (ionChange)="trocar($event)">
+        <ion-segment-button value="usuarios">Usuários</ion-segment-button>
+        <ion-segment-button value="treinos">Treinos</ion-segment-button>
+      </ion-segment>
+    </ion-col>
+
+  </ion-row>
+
+
+  <!-- lista de usuários -->
+  <ion-row class="ion-justify-content-center" *ngIf="this.segments=='usuarios'">
+    <ion-col size="12" size-lg="5">
+      <ng-container *ngFor="let user of this.usuarios">
+        <ion-item color="secondary">
+          <ion-label color="primary">
+            <h2>{{user.nome}}</h2>
+            <h3>Idade: {{user.idade}}</h3>
+            <h1>Gênero: {{user.genero}}</h1>
+          </ion-label>
+        </ion-item>
+      </ng-container>
+
+    </ion-col>
+    <!-- organiza um grupo, não aparece na tela -->
+
+   
+  </ion-row>
+
+
+  <!-- lista de treinos -->
+  <ion-row class="ion-justify-content-center" *ngIf="this.segments=='treinos'">
+    <ion-col size="12" size-lg="5">Treinos</ion-col>
+  </ion-row>
 
 </ion-content>
