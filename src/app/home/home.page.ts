@@ -10,31 +10,75 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  // variaveis
-  perfil = {
-    foto : 'https://avatars.githubusercontent.com/u/162513613?s=400&u=e0a9aa78b8458783075c9078ac379e73d298418d&v=4',
-    nome : 'Bruno Mendes de Morais',
-    profisao : 'Programador Front-end',
-    mensao: '@Bruno',
-    lingua : 'Portugues',
-    cidade : 'Tatui/SP',
-    data: 'desde ontem',
-    bio: 'desde ontem criando codigos com auxilio do chat gpt',
-    informacao: {
-      curtidas: '32.6k',
-      seguindo: '1.9k',
-      amigos : '2.1k'
-    }
-    
-  }
+  segments: string = 'usuario';
+  usuarios = [
+    {
+      nome:'ninguem',
+      idade: 20,
+      genero:'Masculino',
+      rotinas:[
+        {
+          dia: 'segunda-feira',
+          treinos : [
+            'Rosca Direta',
+            'Crucifixo',
+            'Remada Sumô'
+          ]
+        },
+        {
+          dia: 'quarta-feira',
+          treinos : [
+            'Rosca Invertida',
+            'Pulley',
+            'Remada Sentada'
+          ]
+        },
+        {
+          dia: 'Sexta-feira',
+          treinos : [
+            'Supino Inclinado',
+            'Biceps Corda',
+            'Biceps Hulk invertido'
+          ]
+        }
+        
+      ]
+    },
+    {
+      nome:'todo mundo',
+      idade: 93,
+      genero:'feminino',
+      rotinas:[
+        {
+          dia: 'terca-feira',
+          treinos : [
+            'Rosca Direta',
+            'Levantamento Terra',
+            'Remada Sumô'
+          ]
+        },
+        {
+          dia: 'Quinta-feira',
+          treinos : [
+            'Supino Simples',
+            'Agachamento com alters',
+            'Flexões de Diamante'
+          ]
+        },
+        {
+          dia: 'Sexta-feira',
+          treinos : [
+            'Supino Inclinado',
+            'Biceps Corda',
+            'Levações Laterais'
+          ]
+        }
+        
+      ]
+    },
+  ]
 
-  amigos = {
-    foto : 'https://avatars.githubusercontent.com/u/162513613?s=400&u=e0a9aa78b8458783075c9078ac379e73d298418d&v=4',
-    nome : 'euMesmo',
-    mensao:'@mesmo',
-    comentario:'socorro',
-    comentario2:'oq acontece se colocar a chave na tomada',
-    comentario1:'achei uma tomada e uma chave'
+  trocar(event: any){
+    this.segments = event.detail.value;
   }
-
-  }
+}

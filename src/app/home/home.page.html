@@ -1,78 +1,38 @@
 <ion-content [fullscreen]="true">
 
+<!-- menu seguimento -->
   <ion-row class="ion-justify-content-center">
-    <ion-col size="5" size-lg="3">
-      <img id="imgPerfil" src="{{this.perfil.foto}}" alt="">
+    <ion-col size="12" size-lg="5">
+      <ion-segment value="Usuarios" (ionChange)="trocar($event)">
+        <ion-segment-button value="usuarios">Usuarios</ion-segment-button>
+        <ion-segment-button value="treinos">Treinos</ion-segment-button>
+      </ion-segment>
     </ion-col>
-    <ion-col size="5"  size-lg="8" size-xl="4">
-      <ion-item>
-        <h1>{{this.perfil.nome}}</h1>
-      </ion-item>
-      <ion-item>
-        <p>{{this.perfil.profisao}}</p>
-      </ion-item>
-      <ion-item>
-        <p>{{this.perfil.mensao}}</p>
-      </ion-item>
-      <ion-item>
-        <p>{{this.perfil.lingua}}</p>
-      </ion-item>
-      <ion-item>
-        <p>{{this.perfil.cidade}}</p>
-      </ion-item>
-      <ion-item>
-        <p>{{this.perfil.data}}</p>
-      </ion-item>
+  </ion-row>
+
+<!-- lista de usuarios -->
+  <ion-row class="ion-justify-content-center" *ngIf="this.segments== 'usuarios'">
+
+    <ion-col size="12" size-lg="5">
+      <ng-container *ngFor="let user of this.usuarios">
+        <ion-item>
+          <ion-label>
+            <h2>{{user.nome}}</h2>
+            <h3>Idade: {{user.idade}}</h3>
+            <h3>Idade: {{user.genero}}</h3>
+            <h3></h3>
+          </ion-label>
+        </ion-item>
+      </ng-container>
     </ion-col>
-    </ion-row>
 
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="12"  size-lg="8" size-xl="7">
-        Biografia
-      </ion-col>
-    </ion-row>
+  </ion-row>
 
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="12"  size-lg="8" size-xl="7">{{this.perfil.bio}}</ion-col>
-    </ion-row>
+  <!-- lista de treinos -->
+  <ion-row class="ion-justify-content-center" *ngIf="this.segments=='treinos'">
 
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="7">
-        <ion-item-divider></ion-item-divider>
-      </ion-col>
-    </ion-row>
+    <ion-col size="12" size-lg="5"></ion-col>
 
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="4"  size-lg="4" size-xl="2">
-        <ion-item>{{this.perfil.informacao.curtidas}}</ion-item>
-        <ion-item>curtidas</ion-item>
-      </ion-col>
-      <ion-col size="4"  size-lg="4" size-xl="2">
-        <ion-item>{{this.perfil.informacao.seguindo}}</ion-item>
-        <ion-item>seguindo</ion-item>
-      </ion-col>
-      <ion-col size="4"  size-lg="4" size-xl="2">
-        <ion-item>{{this.perfil.informacao.amigos}}</ion-item>
-        <ion-item>amigos</ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="7">
-        <ion-item-divider></ion-item-divider>
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="12"  size-lg="8" size-xl="7"><h2>Postagem de amigos</h2></ion-col>
-    </ion-row>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="3"  size-lg="2" size-xl="1"> <img class="foto-perfil" src="{{amigos.foto}}" alt=""></ion-col>
-      <ion-col size="9"  size-lg="6" size-xl="6">
-        <ion-row><span>{{amigos.nome}}</span> {{amigos.mensao}}</ion-row>
-        <ion-row>{{amigos.comentario1}}</ion-row>
-      </ion-col>
-    </ion-row>
-
+  </ion-row>
 
 </ion-content>
