@@ -1,16 +1,16 @@
 <ion-content [fullscreen]="true">
 
-<!-- menu seguimento -->
+  <!-- menu seguimento -->
   <ion-row class="ion-justify-content-center">
     <ion-col size="12" size-lg="5">
-      <ion-segment value="Usuarios" (ionChange)="trocar($event)">
+      <ion-segment value="usuarios" (ionChange)="trocar($event)">
         <ion-segment-button value="usuarios">Usuarios</ion-segment-button>
         <ion-segment-button value="treinos">Treinos</ion-segment-button>
       </ion-segment>
     </ion-col>
   </ion-row>
 
-<!-- lista de usuarios -->
+  <!-- lista de usuarios -->
   <ion-row class="ion-justify-content-center" *ngIf="this.segments== 'usuarios'">
 
     <ion-col size="12" size-lg="5">
@@ -24,6 +24,31 @@
           </ion-label>
         </ion-item>
       </ng-container>
+
+      <ng-container *ngFor="let user of this.usuarios">
+
+        <ion-accordion-group>
+          <ng-container *ngFor="let rotina of user.rotinas">
+            <ion-accordion value="{{rotina.dia}}">
+              <ion-item slot="header">
+                <ion-label>
+                  {{rotina.dia}}
+                </ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content">
+                <ng-container *ngFor="let treino of rotina.treinos">
+                  <ion-item>
+                    <ion-label>{{ treino }}</ion-label>
+                  </ion-item>
+                </ng-container>
+              </div>
+            </ion-accordion>
+          </ng-container>
+        </ion-accordion-group>
+
+      </ng-container>
+
+
     </ion-col>
 
   </ion-row>
@@ -32,7 +57,17 @@
   <ion-row class="ion-justify-content-center" *ngIf="this.segments=='treinos'">
 
     <ion-col size="12" size-lg="5"></ion-col>
-
+    <ng-container id="batata" *ngFor="let treino of this.treinos">
+      <ion-card size="12" size-lg="5">
+        <img id="imgTreino" alt="Silhouette of mountains" src="{{treino.foto}}" />
+        <ion-card-header>
+          <ion-card-title>{{treino.nome}}</ion-card-title>
+          <ion-card-subtitle>{{treino.series}} series</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
   </ion-row>
-
 </ion-content>
