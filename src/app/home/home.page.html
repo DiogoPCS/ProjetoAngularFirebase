@@ -3,44 +3,81 @@ ion justify para linha -->
 
 <ion-content [fullscreen]="true">
   <!-- menu segmentos -->
-<ion-row  class="ion-justify-content-center">
-<ion-col size="12" size-lg="5">
-  <!-- value no ion-segment ativará a aba escolhida primeiro no caso usuarios -->
-<ion-segment value="usuarios" (ionChange)="trocar($event)"> 
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="5">
+      <!-- value no ion-segment ativará a aba escolhida primeiro no caso usuarios -->
+      <ion-segment value="usuarios" (ionChange)="trocar($event)">
 
-  <!-- é uma guia para aba -->
-   <ion-segment-button value="usuarios">Usuário</ion-segment-button>
-   <ion-segment-button value="treinos">Treinos</ion-segment-button>
+        <!-- é uma guia para aba -->
+        <ion-segment-button value="usuarios">Usuário</ion-segment-button>
+        <ion-segment-button value="treinos">Treinos</ion-segment-button>
 
-</ion-segment>
+      </ion-segment>
 
-</ion-col>
+    </ion-col>
 
 
 
-</ion-row>
-<!-- lista de usuarios -->
-<ion-row class="ion-justify-content-center" *ngIf="this.segments=='usuarios'">
-  <ion-col size="12" size-lg="5">
-    
-    <ng-container *ngFor="let user of this.usuarios" >
-     <ion-item color="secondary">
-      <ion-label color="tertiary">
-        <h2>{{user.nome}}</h2>
-        <h3>Idade: {{user.idade}}</h3>
-        <h3>Genero: {{user.genero}}</h3>
-      </ion-label>
-     </ion-item>
-    </ng-container>
-    
-  </ion-col>
+  </ion-row>
+  <!-- lista de usuarios -->
+  <ion-row class="ion-justify-content-center" *ngIf="this.segments=='usuarios'">
+    <ion-col size="12" size-lg="5">
 
-</ion-row>
-<!-- lista de treinos -->
-<ion-row class="ion-justify-content-center" *ngIf="this.segments=='treinos'"  >
-  <ion-col size="12" size-lg="5" > treinos </ion-col>
+      <ng-container *ngFor="let user of this.usuarios">
+        <ion-item color="secondary">
+          <ion-label color="tertiary">
+            <h2>{{user.nome}}</h2>
+            <h3>Idade: {{user.idade}}</h3>
+            <h3>Genero: {{user.genero}}</h3>
+          </ion-label>
+        </ion-item>
+        <ion-accordion-group>
+          <ng-container *ngFor="let rotina of user.rotinas">
+            <ion-accordion value="rotina.dia">
+              <ion-item slot="header">
+                <ion-label color="dark">{{rotina.dia}}</ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content" color="tertiary">
+                <ng-container *ngFor="let treino of rotina.treinos">
+                  <ion-item>
+                    <ion-label>{{treino}}</ion-label>
+                  </ion-item>
+                </ng-container>
+              </div>
 
-</ion-row>
+            </ion-accordion>
+          </ng-container>
+        </ion-accordion-group>
+      </ng-container>
+
+      </ion-col>
+    </ion-row>
+
+       <!-- Lista de Treinos -->
+  <ion-row class="ion-justify-content-center" *ngIf="this.segments == 'treinos'">
+    <ion-col size="12" size-lg="5">
+
+
+
+      <ng-container *ngFor="let treino of this.treinos"> 
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title  class="treino">{{treino.nome}}</ion-card-title>
+          </ion-card-header>
+          
+        
+          <ion-card-content  class="treino">
+            {{treino.series}}
+            <img height="150px" src="{{treino.foto}}">
+          </ion-card-content>
+        </ion-card>
+      
+      </ng-container>
+
+
+    </ion-col>
+  </ion-row>
   
-
 </ion-content>
+      
