@@ -54,6 +54,7 @@ export class AuthenticateService {
         .then((response: any) => {
             console.log(response.user);
             this._message.show('Login Realizado com Sucesso!');
+            this.redirectTo('/desenvolvedor')
         })
         .catch((_: any) => {
             this.showErro(_, email, password);

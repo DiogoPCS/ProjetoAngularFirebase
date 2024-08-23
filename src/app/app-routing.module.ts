@@ -10,6 +10,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'desenvolvedor',
+    loadChildren: () => import('./desenvolvedor/desenvolvedor.module').then( m => m.DesenvolvedorPageModule)
   }
 ];
 

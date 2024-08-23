@@ -10,17 +10,63 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
+  usuario: any ={
+    email: null,
+    senha: null
+  }
+  id: any;
+
   recado = {
     assunto: null,
     mensagem: null
   }
-
-  enviar(){
+  recados: any =[];
+  enviar(){ 
     this.crudservice.insert(this.recado, 'recados');
   }
 
+  carregar(){
+    this.recados = [];
+    this.crudservice.fetchAll('recados')
+    .then((response) => {
+      this.recados = response;
+      console.log(this.recados);
+    })
+    .catch((erro) => {
+      console.log(erro);
+    })
+    .finally(() => {
+      console.log("processo finalizado");
+    })
+  }
+
+  remover(id: string){
+    this.crudservice.remove(id, 'recados');
+    this.carregar();
+  }
+
+  selecionar(recado: any){
+    this.id = recado.id
+    this.recado = recado; 
+  }
+
+  atualizar(){
+    this.crudservice.update(this.id, this.recado, 'recados')
+  }
+
+  registrar(){
+      this.authService.register(this.usuario.email, this.usuario.senha);
+  }
+
+  login(){
+    this.authService.login(this.usuario.email, this.usuario.senha);
+  }
+
+
   constructor(
-    private crudservice: CrudService
+    public crudservice: CrudService,
+    public authService: AuthenticateService
   ){}
 
   pessoa = {
@@ -63,6 +109,7 @@ export class HomePage {
         descricao: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias eius natus atque cupiditate eum quidem quas voluptatibus dolore nisi. Nisi nostrum eveniet ratione vel consectetur commodi dolores culpa necessitatibus architecto.',
       }
     ]
+
 
 
 
