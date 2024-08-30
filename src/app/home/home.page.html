@@ -1,19 +1,54 @@
 <ion-content [fullscreen]="true">
-  <ion-button (click)="this.getFuncionarios()">Carregar Funcionários</ion-button>
+ <ion-row class="ion-justfy-content-center">
+  <ion-col size="12" size-lg="4">
 
-  <ng-container *ngFor="let func of this.funcionarios">
     <ion-row class="ion-justfy-content-center">
-        <ion-col size="12" size-lg="6">
-          <ion-card>
-            <ion-item>
-                Nome:{{func.Nome}}
-            </ion-item>
-            <ion-item>
-              Cargo:{{func.Cargo}}
-            </ion-item>
-          </ion-card>
-        </ion-col>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Funcionários</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button routerLink="/cadastrar-funcionario">Cadastrar</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Funcionários</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button routerLink="/listar-funcionario">Listar Todos  </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Funcionários</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button routerLink="/excluir-funcionario">Excluir</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Funcionários</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button routerLink="/atualizar-funcionario">Atualizar</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
     </ion-row>
 
-  </ng-container>
+  </ion-col>
+ </ion-row>
 </ion-content>

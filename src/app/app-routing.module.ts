@@ -10,7 +10,25 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'cadastrar-funcionario',
+    loadChildren: () => import('./cadastrar-funcionario/cadastrar-funcionario.module').then( m => m.CadastrarFuncionarioPageModule)
+  },  
+  {
+    path: 'excluir-funcionario',
+    loadChildren: () => import('./excluir-funcionario/excluir-funcionario.module').then( m => m.ExcluirFuncionarioPageModule)
+  },
+  {
+    path: 'atualizar-funcionario',
+    loadChildren: () => import('./atualizar-funcionario/atualizar-funcionario.module').then( m => m.AtualizarFuncionarioPageModule)
+  },
+  {
+    path: 'listar-funcionario',
+    loadChildren: () => import('./listar-funcionario/listar-funcionario.module').then( m => m.ListarFuncionarioPageModule)
   }
+
+
 ];
 
 @NgModule({
