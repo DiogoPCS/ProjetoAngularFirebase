@@ -1,0 +1,61 @@
+<ion-content [fullscreen]="true">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="8">
+      <ng-container *ngFor="let pais of this.paises">
+
+        <!-- BANDEIRA E PAÍS -->
+         <ion-row class="ion-justify-content-center">
+          <ion-col size="12" size-lg="12">
+            <ion-item lines="none">
+              <ion-thumbnail slot="start">
+                <img src="{{ pais.flags.png }}" alt="">
+              </ion-thumbnail>
+              <ion-label>
+                <h1>{{ pais.name.common }}</h1>
+                <br>
+                <h2>{{ pais.name.official }}</h2>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+         </ion-row>
+
+         <ion-item-divider></ion-item-divider>
+
+         <!-- DADOS DO PAÍS -->
+         <ion-row>
+          <ion-item lines="none">
+            <ion-label class="dados-pais">
+              <span>Capital: {{ pais.capital }}</span>
+              <br>
+              <span>População: {{ pais.population}}</span>
+              <br>
+              <span>Àrea: {{ pais.area }}</span>
+              <br>
+              <span>Região: {{ pais.region }}</span>
+              <br>
+              <span>Sub-Região: {{ pais.subregion }}</span>
+            </ion-label>
+          </ion-item>
+         </ion-row>
+
+         <ion-item-divider></ion-item-divider>
+
+         <!-- FUSO-HORÁRIO -->
+          <h1>Fuso Horários do País</h1>
+          <ng-container *ngFor="let time of this.pais.timezones">
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label>
+                    <span> - {{ time }}</span>
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ng-container>
+
+      </ng-container>
+    </ion-col>
+  </ion-row>
+  
+</ion-content>

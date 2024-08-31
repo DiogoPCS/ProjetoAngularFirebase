@@ -1,0 +1,33 @@
+.on-mouse {
+    cursor: pointer;
+
+    & h2 { 
+        letter-spacing: none; 
+        transition: all 1s;
+    }
+
+    & h2, 
+    & h3 {
+        color: #F2F2F2;
+        transition: all 0.5s;
+    }
+
+    
+}
+
+.on-mouse:hover {
+    cursor: pointer;
+
+    & h2 { 
+        letter-spacing: 1px; 
+        transition: all 1s;
+    }
+
+    & h2, 
+    & h3 {
+        color:#112426;
+        transition: all 0.5;
+    }
+
+    
+}
