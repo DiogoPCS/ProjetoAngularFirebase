@@ -23,7 +23,7 @@ export class HomePage {
 
   getPaisCode(){
     this.isLoading = true;
-    fetch('https://restcountries.com/v3.1/all?fields=name,ccn3,flags,capital,population,area,region,subregion,timezone')
+    fetch('https://restcountries.com/v3.1/all?fields=name,ccn3,flags,capital,population,area,region,subregion,timezone,borders,independent')
     .then( dados => dados.json() )
     .then( dados => {
       console.log(dados);

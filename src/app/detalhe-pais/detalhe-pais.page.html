@@ -8,7 +8,7 @@
           <ion-col size="12" size-lg="12">
             <ion-item lines="none">
               <ion-thumbnail slot="start">
-                <img src="{{ pais.flags.png }}" alt="">
+                <img src="{{ pais.flags.png }}">
               </ion-thumbnail>
               <ion-label>
                 <h1>{{ pais.name.common }}</h1>
@@ -45,9 +45,37 @@
           <ng-container *ngFor="let time of this.pais.timezones">
             <ion-row>
               <ion-col>
-                <ion-item lines="none">
+                <ion-item lines="none" class="on-mouse">
                   <ion-label>
                     <span> - {{ time }}</span>
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ng-container>
+
+          <ion-item-divider></ion-item-divider>
+
+          <!-- INDEPENDENTE -->
+          <ng-container *ngFor="let pais of this.paises">
+            <ion-row class="ion-justify-content-center">
+              <ion-col>
+                <ion-label>
+                  <h1 *ngIf="pais.independent">{{ pais.name.common }} é independente!</h1>
+                  <h1 *ngIf="!pais.independent">{{ pais.name.common }} não é independente!</h1>
+                </ion-label>
+              </ion-col>
+            </ion-row>
+          </ng-container>
+
+          <!-- FRONTEIRA PAÍS -->
+          <h1>Veja mais sobre os países que fazem fronteira</h1>
+          <ng-container *ngFor="let border of this.pais.borders">
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label>
+                    <span> - {{ border }}</span>
                   </ion-label>
                 </ion-item>
               </ion-col>

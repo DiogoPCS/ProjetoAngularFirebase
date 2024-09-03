@@ -15,3 +15,4 @@ describe('DetalhePaisPage', () => {
     expect(component).toBeTruthy();
   });
 });
+
