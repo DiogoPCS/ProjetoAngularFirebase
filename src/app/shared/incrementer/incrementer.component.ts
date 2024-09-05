@@ -17,7 +17,10 @@ valor: number = 0;
   ngOnInit() {}
   
 decrementar(){
-  this.valor--
+  if(
+  this.valor >0){
+    this.valor--
+  }
 
 
 }
