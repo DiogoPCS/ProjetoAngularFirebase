@@ -4,7 +4,6 @@ import { CrudService } from '../services/crud.service';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { MessageService } from '../services/message.service';
 import { Router } from '@angular/router';
-import { ApiService } from '../shared/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +12,6 @@ import { ApiService } from '../shared/services/api.service';
 })
 export class HomePage {
 
-  constructor(
-    public apiService: ApiService
-  ){
-    this.apiService.getPokemons();
-  }
+  constructor( ){ }
 
 }
