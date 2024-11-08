@@ -1,0 +1,42 @@
+.fundo{
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    outline: 1px solid black;
+    min-height: 80Vh;
+    margin: auto 5px;
+}
+.carro1{
+    background-image:url(https://i.pinimg.com/736x/ee/85/3a/ee853a7062c9dc557f4826ace850ca9d.jpg) ;
+}
+
+.carro2{
+    background-image:url(https://i.pinimg.com/736x/be/7f/0b/be7f0bf5691ad77cd9577c2210a7a2f0.jpg) ;
+}
+.carro3{
+    background-image:url(https://i.pinimg.com/736x/1d/53/13/1d5313dd8abbcb3d1db33dc478562ff4.jpg) ;
+}
+.carro4{
+    background-image:url(https://i.pinimg.com/736x/99/d8/8f/99d88fe2c0437b69096bfdb78d606cf8.jpg) ;
+}
+.escudo{
+    background-image:url(https://i.pinimg.com/originals/f2/bc/17/f2bc1752fef77856be0d9a676c9d7aed.jpg) ;
+}
+.c{
+    outline: 1px solid white;
+}
+.linha{
+    margin:auto;
+}
+h1{
+font-family: Arial, Helvetica, sans-serif;
+font-size: 3.5rem;
+font-weight: bold;
+}
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem; 
+    text-align: justify;
+}
