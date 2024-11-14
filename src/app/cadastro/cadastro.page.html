@@ -1,0 +1,54 @@
+<app-menu></app-menu>
+<ion-content [fullscreen]="true">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="6">
+     <ion-label>Cadastrar carros</ion-label>
+       <ion-item>
+         <ion-input label="nome do carro" [(ngModel)]="this.carro.nome"></ion-input>
+       </ion-item>
+       <ion-item>
+        <ion-input label="cor" [(ngModel)]="this.carro.cor"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="ano"  [(ngModel)]="this.carro.ano"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="top speed"  [(ngModel)]="this.carro.topspeed"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="tipo" [(ngModel)]="this.carro.tipo"></ion-input>
+      </ion-item>
+      <ion-item>
+       <ion-button slot="end" color="tertiary" (click)="salvar()"> salvar
+       </ion-button>
+      </ion-item>
+    </ion-col>
+    
+  </ion-row>
+
+
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="10">
+     <ion-card>
+      <ion-col>id : 1 </ion-col>
+      <ion-col>nome: puro sangue</ion-col>
+      <ion-col>cor: vermelho </ion-col>
+      <ion-col>ano:  2019 </ion-col>
+      <ion-col>top speed: 399 </ion-col>
+      <ion-col>tipo : street</ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-icon slot="end" name="pencil-outline"></ion-icon>
+          <ion-icon slot="end" name="trash-outline"></ion-icon>
+        </ion-item>
+      </ion-col>
+
+
+     </ion-card>
+    </ion-col>
+    
+  </ion-row>
+
+
+
+</ion-content>
