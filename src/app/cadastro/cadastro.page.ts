@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../services/crud.service';
+import { AlertController } from '@ionic/angular';
+import { triggerAsyncId } from 'async_hooks';
 
 @Component({
   selector: 'app-cadastro',
@@ -7,6 +9,12 @@ import { CrudService } from '../services/crud.service';
   styleUrls: ['./cadastro.page.scss'],
 })
 export class CadastroPage implements OnInit {
+
+
+
+
+carro2:any=[];
+
 
 carro: any={
   nome:null,
@@ -21,7 +29,10 @@ carro: any={
 
   constructor(
     public crudservice: CrudService
-  ) { }
+  ) { 
+     this.getCarro2();
+
+  }
 
 
 
@@ -30,6 +41,22 @@ carro: any={
  salvar(){
   console.log(this.carro);
    this.crudservice.insert(this.carro,'carros')
+   this.getCarro2();
+ }
 
+ getCarro2(){
+  this.crudservice.fetchAll('carros')
+  .then(resp =>{
+    console.log(resp);
+    this.carro2 = resp;
+  })
+ }
+
+ remover(id:any){
+  alert(id);
+  this.crudservice.remove(id, 'carros')
+  .then(() => {
+    this.getCarro2();
+  })
  }
 }
