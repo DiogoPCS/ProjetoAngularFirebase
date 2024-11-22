@@ -19,6 +19,9 @@
         <ion-input label="tipo" [(ngModel)]="this.carro.tipo"></ion-input>
       </ion-item>
       <ion-item>
+        <ion-input label="foto"  type="file" value="upload" (change)="memorizararquivo($event)"></ion-input>
+      </ion-item>
+      <ion-item>
        <ion-button slot="end" color="tertiary" (click)="salvar()"> salvar
        </ion-button>
       </ion-item>
@@ -71,13 +74,13 @@
        <ion-card>
         <ion-col>id : 1 </ion-col>
         <ion-col>nome: {{carro.nome}}</ion-col>
-        <ion-col>cor: vermelho </ion-col>
-        <ion-col>ano:  2019 </ion-col>
-        <ion-col>top speed: 399 </ion-col>
+        <ion-col>cor:  {{carro.cor}}</ion-col>
+        <ion-col>ano:  {{carro.ano}} </ion-col>
+        <ion-col>top speed:  {{carro.topspeed}} </ion-col>
         <ion-col>tipo : street</ion-col>
         <ion-col>
           <ion-item>
-            <ion-icon slot="end" name="pencil-outline"></ion-icon>
+            <ion-icon slot="end" name="pencil-outline"(click)="editar(carro)"></ion-icon>
             <ion-icon slot="end" name="trash-outline" (click)="remover(carro.id)"></ion-icon>
           </ion-item>
         </ion-col>
