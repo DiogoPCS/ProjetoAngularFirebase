@@ -1,4 +1,33 @@
 <ion-content [fullscreen]="true">
-    
+    <ion-label>Página Inicial</ion-label>
+    <br>
+
+     <ion-button routerLink="/sobre">Sobre Nós</ion-button> <!--Criando um Button e linkando a pag sobre nós -->
+
+     <ion-menu side="end" contentId="main-content">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Menu do Ionic</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding"></ion-content>
+      </ion-menu>
+      <div class="ion-page" id="main-content">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>{{ page }}</ion-title>
+            <ion-buttons slot="end">
+              <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding"> 
+        
+          <ion-button (click)="decrementer()"><ion-icon name="remove-circle-outline"></ion-icon></ion-button>
+          {{ valor }}
+          <ion-button (click)="incrementer()"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+         
+        </ion-content>
+      </div>
 
 </ion-content>
