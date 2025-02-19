@@ -12,6 +12,12 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  constructor( ){ }
-
+  page: String = "Pagina de inicio";
+  valor: number = 0;
+ incrementer (){
+  this.valor++;
+ }
+ decrementer(){
+  this.valor--;
+ }
 }
