@@ -11,7 +11,14 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  page: string = 'Página Incial';
+  valor: number = 0;
 
-  constructor( ){ }
+  incrementer () {
+   this.valor++;
+  }
 
+  decrementer () {
+   this.valor--;
+  }
 }
