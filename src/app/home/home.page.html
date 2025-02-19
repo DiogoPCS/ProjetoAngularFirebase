@@ -1,4 +1,25 @@
-<ion-content [fullscreen]="true">
-    
-
-</ion-content>
+<ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{page}}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-button routerLink="/sobre">sobre</ion-button>
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-button (click)="increment()"><ion-icon name="add-circle-outline">+</ion-icon></ion-button>
+      {{valor}}
+    <ion-button (click)="decrementer()"><ion-icon name="remove-circle-outline">-</ion-icon></ion-button>
+  </ion-content>
+  </div>
