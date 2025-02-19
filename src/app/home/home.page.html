@@ -1,11 +1,11 @@
 <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Menu Content</ion-title>
+        <ion-title>{{page}}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-button routerLink="/home">Voltar</ion-button>
+      <ion-button routerLink="/sobre">sobre</ion-button>
     </ion-content>
   </ion-menu>
   <div class="ion-page" id="main-content">
@@ -17,5 +17,9 @@
         <ion-title>Menu</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+    <ion-content class="ion-padding">
+      <ion-button (click)="increment()"><ion-icon name="add-circle-outline">+</ion-icon></ion-button>
+      {{valor}}
+    <ion-button (click)="decrementer()"><ion-icon name="remove-circle-outline">-</ion-icon></ion-button>
+  </ion-content>
   </div>
