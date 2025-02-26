@@ -1,4 +1,17 @@
 <ion-content [fullscreen]="true">
     
 
+  <ion-row>
+    <ion-col size="12" size-lg="6">
+      <ion-item>
+        <ion-input label="Nome do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.nome"></ion-input>
+      </ion-item>
+      <ion-input label="Poder do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.poder"></ion-input>
+      </ion-item>
+      <ion-item lines="none" slot="end">
+        <ion-button (click)="enviar()" color="secondary" size="large">Enviar</ion-button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
 </ion-content>
