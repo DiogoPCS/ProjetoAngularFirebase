@@ -1,37 +1,23 @@
 <ion-content [fullscreen]="true">
-    <ion-menu contentId="main-content">
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>Menu Content</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding">This is the menu content.</ion-content>
-      </ion-menu>
-      <div class="ion-page" id="main-content">
-        <ion-header>
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-menu-button></ion-menu-button>
-            </ion-buttons>
-            <ion-title>Menu</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
-      </div>
-        <!-- <ion-row>
-            <ion-col size="12" size-lg="6">
-                 <ion-label>{{ this.pokemon.nome }}</ion-label> -->
-                <!-- <ion-item>
-                    <ion-input label="Nome do Pokemon" placeholder="Nome do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.nome" ></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-input label="Poder do Pokemon" placeholder="Poder do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.poder" ></ion-input>
-                </ion-item>
-                <ion-item lines="none">
-                    <ion-button (click)="enviar()" color="secondary" size="small">Enviar</ion-button>
-                </ion-item>
+  
+  <ion-row>
+
+    <ion-col size="12" size-xl="3" *ngFor="let pais of this.dados">
+      <ion-card>
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="4">
+                <img src="{{ pais.flags.png }}">
             </ion-col>
-        </ion-row> -->
-        
+            <ion-col size="8">
+                <h2>{{ pais.name.common }}</h2>
+                <h4>{{ pais.name.official }}</h4>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
 
 </ion-content>
