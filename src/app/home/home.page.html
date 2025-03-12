@@ -1,6 +1,30 @@
 <ion-content [fullscreen]="true">
 
-    <ion-button color="secondary">Teste</ion-button>
+    <ng-container *ngIf="this.is_loading">
+        <h1>Sem dados para serem exibidos</h1>
+    </ng-container>
+    <ng-container *ngIf="!this.is_loading">
+        <ion-row>
+            <ion-col size="12" size-xl="3" *ngFor="let pais of this.dados">
+                <ion-card>
+                    <ion-card-content>
+                        <ion-row>
+                            <ion-col size="4">
+                                <ion-thumbnail>
+                                    <img src="{{ pais.flags.svg }}">
+                                </ion-thumbnail>
+                            </ion-col>
+                            <ion-col size="8">
+                                <h3>{{ pais.name.common }}</h3>
+                                <h4>{{ pais.name.official }}</h4>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ng-container>
+    
     
     
 </ion-content>
