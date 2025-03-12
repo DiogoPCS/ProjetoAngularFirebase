@@ -1,18 +1,133 @@
 <ion-content [fullscreen]="true">
     
-<ion-row>
-    <ion-col size="12" size-lg="6">
-        <ion-item>
-            <ion-input label="Nome do Pokemon:" placeholder="Nome do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.nome" ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="Poder do Pokemon:" placeholder="Poder do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.poder" ></ion-input>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-button (click)="enviar()"color="secondary" size="small">Enviar</ion-button>
+  <ion-row class="ion-justify-content-center">
+     <ion-col size="12" size-xl="6">
 
+        <ion-row>
+        <ion-col size="4" size-xl="3">
+            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fperfisecross.fandom.com%2Fpt-br%2Fwiki%2FSousuke_Aizen&psig=AOvVaw2LWisL0wkHf57Iu3phMphI&ust=1741885141043000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJCJkYmChYwDFQAAAAAdAAAAABAS" style="max-width: 300px;">
+              <ion-item>
+                  <ion-label>
+                      <h1>Carlos Antônio</h1>
+                  </ion-label>
+              </ion-item>
+    
+              <ion-item>
+                <ion-label>Programador</ion-label>
+            </ion-item>
+    
+            <ion-item>
+              <ion-label>Português</ion-label>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label>localidade</ion-label>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Desde de janeiro de 2020</ion-label>
       </ion-item>
-    </ion-col>
-</ion-row>
+              
+        </ion-col>
+        <ion-col size="8" size-xl="9">
+    
+        </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="nones">
+              <ion-label>
+                <h2>Biografia</h2>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <ion-item>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut veritatis ex distinctio eligendi? Deleniti, qui temporibus id itaque vel cupiditate obcaecati tempore asperiores mollitia omnis commodi non. Delectus, modi illum.</p>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">
+              <ion-item lines="none">
+                  <ion-label>
+                      <h3>45.6k</h3>
+                  </ion-label>
+              </ion-item>
+
+              <ion-item lines="none">
+                <ion-label>
+                    <h3>curtidas</h3>
+                </ion-label>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="4">
+            <ion-item lines="none">
+                <ion-label>
+                    <h3>45.6k</h3>
+                </ion-label>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-label>
+                  <h3>seguindo</h3>
+              </ion-label>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="4">
+          <ion-item lines="none">
+              <ion-label>
+                  <h3>45.6k</h3>
+              </ion-label>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label>
+                <h3>amigos</h3>
+            </ion-label>
+        </ion-item>
+      </ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col size="12" class="text-center">
+              <ion-item-divider></ion-item-divider>
+          </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-label>
+            <h2>Minhas postagens</h2>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ng-container *ngFor="let postagem of this.perfil.postagens">
+        <ion-row>
+          <ion-col size="4" size-xl="3">
+            <img src="{{ postagem.foto }}"  style="max-width: 300px;">
+          </ion-col>
+          <ion-col size="8" size-xl="9">
+            <ion-item lines="none">
+                <h2>{{ postagem.nome }} {{ postagem.nome_usuario }}</h2>
+            </ion-item>
+            <p>{{ postagem.texto }}</p>
+            <p>{{ postagem.data }}</p>
+          </ion-col>
+        </ion-row>
+      </ng-container>
+      
+     </ion-col>
+  </ion-row>
+  
+
 
 </ion-content>
