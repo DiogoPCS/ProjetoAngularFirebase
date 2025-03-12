@@ -1,37 +1,157 @@
 <ion-content [fullscreen]="true">
-    <ion-menu contentId="main-content">
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>Menu Content</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding">This is the menu content.</ion-content>
-      </ion-menu>
-      <div class="ion-page" id="main-content">
-        <ion-header>
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-menu-button></ion-menu-button>
-            </ion-buttons>
-            <ion-title>Menu</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
-      </div>
-        <!-- <ion-row>
-            <ion-col size="12" size-lg="6">
-                 <ion-label>{{ this.pokemon.nome }}</ion-label> -->
-                <!-- <ion-item>
-                    <ion-input label="Nome do Pokemon" placeholder="Nome do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.nome" ></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-input label="Poder do Pokemon" placeholder="Poder do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.poder" ></ion-input>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12" size-xl="6">
+
+            <!-- perfil -->
+            <ion-row>
+              <ion-col size="4">
+                <img src="https://preview.redd.it/lloyd-frontera-from-the-greatest-estate-developer-is-the-v0-zc7ybzahdu5e1.jpg?width=640&crop=smart&auto=webp&s=a761614020b31009a38a7a02ba183184877ac0fd" style="width: 100%;">
+              </ion-col>
+              <ion-col size="8">
+                <ion-item lines="none">
+                  <ion-label>
+                    <h1>Pikimon Alberto</h1>
+                  </ion-label>
                 </ion-item>
                 <ion-item lines="none">
-                    <ion-button (click)="enviar()" color="secondary" size="small">Enviar</ion-button>
+                  <ion-label>
+                    <h4>Esterionatário</h4>
+                  </ion-label>
                 </ion-item>
-            </ion-col>
-        </ion-row> -->
+                <ion-item lines="none">
+                  <ion-label>
+                    <h4>@pikimonalberto</h4>
+                  </ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-label>
+                    <h4>Português</h4>
+                  </ion-label>
+                </ion-item>
+                  <ion-item lines="none">
+                    <ion-label>
+                      <h4>Tatuí / SP</h4>
+                    </ion-label>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <ion-label>
+                      <h4>desde 1500 a.C.</h4>
+                    </ion-label>
+                  </ion-item>
+                
+              </ion-col>
+            </ion-row>
+
+            <!-- biografia -->
+            <ion-row>
+              <ion-col size="12">
+                  <ion-item lines="none">
+                      <ion-label>
+                          <h2>Biografia</h2>
+                      </ion-label>
+                  </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- descrição da biografia -->
+            <ion-row>
+              <ion-col size="12">
+                  <ion-item lines="none">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo totam harum in molestias quam, placeat consectetur et natus, sequi incidunt praesentium? Molestiae laborum, adipisci nesciunt maxime quam minus consequuntur sapiente.</p>
+                  </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- divider -->
+            <ion-row>
+              <ion-col size="12" class="text-center">
+                  <ion-item-divider></ion-item-divider>
+              </ion-col>
+            </ion-row>
+
+            <!-- estatísticas -->
+             <ion-row>
+              <ion-col size="4" class="text-center">
+                <ion-item lines="none">
+                    <ion-label>
+                      <h2>45.6k</h2>
+                    </ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-label>
+                    <h3>Curtidas</h3>
+                  </ion-label>
+              </ion-item>
+              </ion-col>
+              <ion-col size="4" class="text-center">
+                <ion-item lines="none">
+                    <ion-label>
+                      <h2>745k</h2>
+                    </ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-label>
+                    <h3>Seguindo</h3>
+                  </ion-label>
+              </ion-item>
+              </ion-col>
+              <ion-col size="4" class="text-center">
+                <ion-item lines="none">
+                    <ion-label>
+                      <h2>1</h2>
+                    </ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-label>
+                    <h3>Amigos</h3>
+                  </ion-label>
+              </ion-item>
+              </ion-col>
+             </ion-row>
+
+            <!-- divider -->
+            <ion-row>
+  <ion-col size="12" class="text-center">
+      <ion-item-divider></ion-item-divider>
+  </ion-col>
+            </ion-row>
+
+            <!-- Minha postagens -->
+            <ion-row>
+              <ion-col size="12">
+                  <ion-label>
+                      <h2>Minhas Postagens</h2>
+                  </ion-label>
+              </ion-col>
+            </ion-row>
+
+            <!-- Postagens -->
+             <ng-container *ngFor="let postagens of this.perfil.postagens">
+               <ion-row>
+                 <ion-col size="4">
+                   <img src="{{ postagens.foto }}">
+                 </ion-col>
+                 <ion-col size="8">
+                   <ion-item lines="none">
+                     <ion-label>
+                       <h2>{{ postagens.nome }} - {{ postagens.nome_usuario }}</h2>
+                     </ion-label>
+                   </ion-item>
+                   <ion-item lines="none">
+                     <p>{{ postagens.texto }}</p>
+                   </ion-item>
+                   <ion-item lines="none">
+                    <p>{{ postagens.data }}</p>
+                  </ion-item>
+                 </ion-col>
+               </ion-row>
+             </ng-container>
+
+          </ion-col>
+        </ion-row>
+
         
+   
 
 </ion-content>
