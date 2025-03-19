@@ -1,0 +1,18 @@
+<ion-content [fullscreen]="true">
+    <ion-row class="ion-justify-content-center margin-top" >
+        <ion-col size="4" class="bg-img"></ion-col>
+        <ion-col size="4">
+            <ion-card>
+                <ion-item>
+                    <ion-input label="E-mail" [(ngModel)]="this.user.email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input label="Senha" [(ngModel)]="this.user.spassword"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input color="primary" slot="end" (click)="Acessar()">Acessar</ion-input>
+                </ion-item>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-content>
