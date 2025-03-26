@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../services/message.service';
 import { CrudService } from '../services/crud.service';
+import { AuthenticateService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +19,9 @@ export class RegisterPage implements OnInit {
 
   constructor(
     private message: MessageService,
-    private crudService: CrudService
+    private crudService: CrudService,
+    private authService: AuthenticateService, 
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,7 +33,18 @@ export class RegisterPage implements OnInit {
       return;
     }
 
-    this.crudService.insert(this.user, 'user');
+    this.authService.register(this.user.email, this.user.password)
+    .then(response => {
+      if(response)
+        this.router.navigate(['/login']);
+
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    .finally(() => {
+      console.log('Requisição Finalizada');
+    })
 
   }
 
