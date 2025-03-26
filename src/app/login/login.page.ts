@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../services/message.service';
 import { CrudService } from '../services/crud.service';
+import { AuthenticateService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,24 +17,15 @@ export class LoginPage implements OnInit {
   
     constructor(
       private message:MessageService,
-      private crudService:CrudService
+      private crudService:CrudService,
+      private authService: AuthenticateService,
     ) { }
   
     ngOnInit() {
     }
   
     acessar(){
-
-      this.crudService.fetchByOperatorParam(this.user.email,'==','email','user')
-      .then(response =>{
-        console.log(response)
-      })
-      .catch(erro =>{
-        console.log(erro);
-      })
-      .finally(()=>{
-        console.log('Processo finalizado')
-      })
+        this.authService.login(this.user.email,this.user.password)
+      }
 
     }
-}
