@@ -1,6 +1,24 @@
 <ion-content [fullscreen]="true">
+        
+            <ion-row class="ion-justify-content-center">
+                <ion-col size="auto">
+                    <h1>{{this.data_selecionada}}</h1>
+                     <ion-datetime (ionChange)="definirData($event)"></ion-datetime> 
+                    </ion-col>
+            </ion-row>
 
-    <ion-button color="secondary">Teste</ion-button>
-    
-    
+        <!-- Calculando dias vividos -->
+            <ion-row class="ion-justify-content-center">
+                <ion-col size="auto">
+                    <h1>Você viveu {{this.dias_vividos}}</h1>    
+                </ion-col>
+                <ion-col size="auto">
+                    <h1>Selecione a data de nascimento</h1>
+                     <ion-datetime (ionChange)="definirDataInicial($event)"></ion-datetime> 
+                </ion-col>
+                <ion-col size="auto">
+                    <h1>Selecione a data atual</h1>
+                     <ion-datetime (ionChange)="definirDataAtual($event)"></ion-datetime> 
+                </ion-col>
+            </ion-row>
 </ion-content>
