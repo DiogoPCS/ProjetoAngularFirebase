@@ -1,6 +1,30 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true"> 
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="auto">
+            <h1>Voce viveu{{this.dias_vividos}}</h1>
+            <ion-datetime (ionChange)="definirData($event)"></ion-datetime>
+        </ion-col>
+    </ion-row>
+    
+    
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="auto">
+            <h1>Selecione a Data de Nacimento</h1>
+            <ion-datetime (ionChange)="definirDataDeNacimento($event)"></ion-datetime>
+        </ion-col>
+    </ion-row>
+    
 
-    <ion-button color="secondary">Teste</ion-button>
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="auto">
+            <h1>Selecione a Data Atual</h1>
+            <ion-datetime (ionChange)="definirDataAtual($event)"></ion-datetime>
+        </ion-col>
+    </ion-row>
     
     
+
+
+
+
 </ion-content>

@@ -29,6 +29,7 @@
     "@capacitor/status-bar": "5.0.2",
     "@ionic/angular": "^7.0.0",
     "ionicons": "^7.0.0",
+    "moment": "^2.30.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
