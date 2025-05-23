@@ -10,6 +10,22 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'sobre-nos',
+    loadChildren: () => import('./sobre-nos/sobre-nos.module').then( m => m.SobreNosPageModule)
+  },
+  {
+    path: 'produtos',
+    loadChildren: () => import('./produtos/produtos.module').then( m => m.ProdutosPageModule)
+  },
+  {
+    path: 'clientes',
+    loadChildren: () => import('./clientes/clientes.module').then( m => m.ClientesPageModule)
+  },
+  {
+    path: 'contatos',
+    loadChildren: () => import('./contatos/contatos.module').then( m => m.ContatosPageModule)
   }
 ];
 

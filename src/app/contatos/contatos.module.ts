@@ -1,25 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { HomePage } from './home.page';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { IonicModule } from '@ionic/angular';
+
+import { ContatosPageRoutingModule } from './contatos-routing.module';
+
+import { ContatosPage } from './contatos.page';
 import { HeaderModule } from '../shared/header/header.module';
 import { FooterModule } from '../shared/footer/footer.module';
 import { CarouselModule } from '../shared/carousel/carousel.module';
-
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
-    HeaderModule,
-    FooterModule,
-    CarouselModule
+    ContatosPageRoutingModule,
+     HeaderModule,
+        FooterModule,
+        CarouselModule
   ],
-  declarations: [HomePage]
+  declarations: [ContatosPage]
 })
-export class HomePageModule {}
+export class ContatosPageModule {}
