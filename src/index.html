@@ -1,26 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
+<ion-content [fullscreen]="true">
+  <ion-row>
 
-<head>
-  <meta charset="utf-8" />
-  <title>Ionic App</title>
+    <ion-col size="2" style="background-color: #1a237e; color: white;">
+      <ion-row>
+        <ion-col size="12">
+          <ion-item lines="none">Início</ion-item>
+          <ion-item lines="none">Nossos Pets</ion-item>
+          <ion-item lines="none">Quem Somos</ion-item>
+          <ion-item lines="none">Contato</ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-col>
 
-  <base href="/" />
+    <ion-col size="10">
+      <ion-row>
 
-  <meta name="color-scheme" content="light dark" />
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="msapplication-tap-highlight" content="no" />
+        <ion-col size="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title class="ion-margin-horizontal">Bolinha</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text class="ion-margin-horizontal">Carinhoso e dorminhoco</ion-text>
+              <ion-button color="warning" class="ion-margin-horizontal">Adotar</ion-button>
+            </ion-card-content>
+            <ion-img
+              src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=800&q=60"
+              class="ion-margin dog-img">
+            </ion-img>
+          </ion-card>
+        </ion-col>
 
-  <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+        <ion-col size="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title class="ion-margin-horizontal">Luna</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text class="ion-margin-horizontal">Brincalhona e inteligente</ion-text>
+              <ion-button color="warning" class="ion-margin-horizontal">Adotar</ion-button>
+            </ion-card-content>
+            <ion-img
+              src="https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=800&q=60"
+              class="ion-margin dog-img">
+            </ion-img>
+          </ion-card>
+        </ion-col>
 
-  <!-- add to homescreen for ios -->
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-</head>
+        <ion-col size="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title class="ion-margin-horizontal">Thor</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text class="ion-margin-horizontal">Fiel e protetor</ion-text>
+              <ion-button color="warning" class="ion-margin-horizontal">Adotar</ion-button>
+            </ion-card-content>
+            <ion-img
+              src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=800&q=60"
+              class="ion-margin dog-img">
+            </ion-img>
+          </ion-card>
+        </ion-col>
 
-<body>
-  <app-root></app-root>
-</body>
+      
+        <ion-col size="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title class="ion-margin-horizontal">Mel</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text class="ion-margin-horizontal">Doce e companheira</ion-text>
+              <ion-button color="warning" class="ion-margin-horizontal">Adotar</ion-button>
+            </ion-card-content>
+            <ion-img
+              src="https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=800&q=60"
+              class="ion-margin dog-img">
+            </ion-img>
+          </ion-card>
+        </ion-col>
 
-</html>
+      </ion-row>
+    </ion-col>
+
+  </ion-row>
+</ion-content>
