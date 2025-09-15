@@ -1,26 +1,42 @@
 <ion-content [fullscreen]="true">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-md="6">
+      
+      <!-- Loading -->
+      <ion-item *ngIf="loading">
+        <ion-spinner></ion-spinner>
+        <ion-label>Cadastrando...</ion-label>
+      </ion-item>
 
-    <ion-row class="ion-justify-content-center">
-        <ion-col size="6">
-            <ion-item>
-                <ion-input type="text" label="Nome Completo" [(ngModel)]="this.usuario.name"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input type="text" label="E-mail" [(ngModel)]="this.usuario.email"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input type="text" label="Senha" [(ngModel)]="this.usuario.password"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input type="text" label="Confirmação de Senha" [(ngModel)]="this.usuario.password_confirmation"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-button (click)="this.cadastrarUsuario()">Cadastrar-se</ion-button>
-            </ion-item>
-        </ion-col>
-    </ion-row>
+      <!-- Mensagens -->
+      <ion-item *ngIf="mensagem">
+        <ion-text [color]="mensagem.includes('Erro') ? 'danger' : 'success'">
+          {{ mensagem }}
+        </ion-text>
+      </ion-item>
 
-    {{ this.usuario.name }}
-    
-    
+      <ion-item>
+        <ion-input type="text" label="Nome Completo" [(ngModel)]="usuario.name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="email" label="E-mail" [(ngModel)]="usuario.email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" label="Senha" [(ngModel)]="usuario.password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" label="Confirmação de Senha" [(ngModel)]="usuario.password_confirmation"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-button (click)="cadastrarUsuario()" [disabled]="loading">
+          Cadastrar-se
+        </ion-button>
+      </ion-item>
+
+    </ion-col>
+  </ion-row>    
 </ion-content>

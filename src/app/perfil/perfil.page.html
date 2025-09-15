@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Meu Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding" *ngIf="carregando">
+    <ion-spinner></ion-spinner>
+    <p>Carregando perfil...</p>
+  </div>
+
+  <div class="ion-padding" *ngIf="!carregando && usuario">
+    <!-- Foto de Perfil -->
+    <div class="foto-container">
+      <img [src]="previewFoto || usuario.picture" class="foto-perfil" alt="Foto de perfil">
+      
+      <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)">
+      <ion-button fill="clear" (click)="fileInput.click()">
+        <ion-icon name="camera-outline"></ion-icon>
+        Alterar Foto
+      </ion-button>
+
+      <ion-button *ngIf="arquivoFoto" (click)="uploadFoto()" fill="solid">
+        Enviar Foto
+      </ion-button>
+    </div>
+
+    <!-- Dados do Usuário -->
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Nome</ion-label>
+        <ion-input [readonly]="!editando" [(ngModel)]="usuario.name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [readonly]="!editando" [(ngModel)]="usuario.email" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Status</ion-label>
+        <ion-input [readonly]="true" [value]="usuario.status"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <!-- Botões de Ação -->
+    <div class="ion-margin-top">
+      <ion-button *ngIf="!editando" (click)="toggleEdicao()" expand="block">
+        <ion-icon name="create-outline"></ion-icon>
+        Editar Perfil
+      </ion-button>
+
+      <ion-button *ngIf="editando" (click)="salvarPerfil()" expand="block" color="success">
+        <ion-icon name="save-outline"></ion-icon>
+        Salvar Alterações
+      </ion-button>
+
+      <ion-button *ngIf="editando" (click)="toggleEdicao()" expand="block" color="medium" fill="outline">
+        Cancelar
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
