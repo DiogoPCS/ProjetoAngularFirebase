@@ -6,6 +6,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Firebase
@@ -28,7 +31,9 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule
 
     // Ionic Storage config
     IonicStorageModule.forRoot({

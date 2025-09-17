@@ -16,6 +16,7 @@ export class PerfilPage implements OnInit {
   editando: boolean = false;
   arquivoFoto: File | null = null;
   previewFoto: string | null = null;
+  timestamp: number = new Date().getTime();
 
   // Postagens
   novaPostagem: any = {
@@ -62,6 +63,9 @@ export class PerfilPage implements OnInit {
     }
   }
 
+
+
+  
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -70,8 +74,14 @@ export class PerfilPage implements OnInit {
         return;
       }
 
+<<<<<<< HEAD
       if (file.size > 10 * 1024 * 1024) {
         this.mostrarErro('A imagem deve ter no máximo 10MB');
+=======
+      // Verificar tamanho do arquivo (ex: máximo 5MB)
+      if (file.size > 10 * 1024 * 1024) {
+        this.mostrarErro('A imagem deve ter no máximo 5MB');
+>>>>>>> 9f4dd93 (arrumado)
         return;
       }
 
@@ -84,6 +94,15 @@ export class PerfilPage implements OnInit {
       reader.readAsDataURL(file);
     }
   }
+<<<<<<< HEAD
+=======
+  
+uploadFoto() {
+  if (!this.arquivoFoto) {
+    this.mostrarErro('Nenhuma imagem selecionada para upload.');
+    return;
+  }
+>>>>>>> 9f4dd93 (arrumado)
 
   uploadFoto() {
     if (!this.arquivoFoto) {
@@ -91,6 +110,7 @@ export class PerfilPage implements OnInit {
       return;
     }
 
+<<<<<<< HEAD
     const formData = new FormData();
     formData.append('picture', this.arquivoFoto);
 
@@ -111,6 +131,30 @@ export class PerfilPage implements OnInit {
       }
     });
   }
+=======
+  this.apiService.post('usuario/foto-upload', formData).subscribe({
+    next: (resp: any) => {
+      console.log('Foto atualizada!', resp);
+
+      const baseUrl = 'http://localhost:8000/'; // ✅ SUBSTITUA pela URL real da sua API
+
+      this.usuario.picture = resp.picture_url.startsWith('http')
+        ? resp.picture_url
+        : baseUrl + resp.picture_url.replace(/^\/+/, ''); // Remove barras duplicadas
+
+      this.arquivoFoto = null;
+      this.previewFoto = null;
+
+      this.mostrarSucesso('Foto atualizada com sucesso!');
+    },
+    error: (err) => {
+      console.error('Erro detalhado:', err);
+      this.mostrarErro('Erro ao atualizar foto');
+    }
+  });
+}
+
+>>>>>>> 9f4dd93 (arrumado)
 
   toggleEdicao() {
     this.editando = !this.editando;

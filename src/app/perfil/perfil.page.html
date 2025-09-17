@@ -20,8 +20,14 @@
   <div class="ion-padding" *ngIf="!carregando && usuario">
 
     <!-- Foto de Perfil -->
+<<<<<<< HEAD
     <div class="foto-container ion-text-center">
       <img [src]="previewFoto || usuario.picture" class="foto-perfil" alt="Foto de perfil">
+=======
+    <div class="foto-container">
+      <img [src]="previewFoto || user.picture" class="foto-perfil" alt="Foto de perfil">
+      
+>>>>>>> 9f4dd93 (arrumado)
       <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)">
       <ion-button fill="clear" (click)="fileInput.click()">
         <ion-icon name="camera-outline" slot="start"></ion-icon>
