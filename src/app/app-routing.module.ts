@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
+  path: 'login',
+  loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+},
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
@@ -14,6 +18,10 @@ const routes: Routes = [
   {
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }
 ];
 

@@ -16,6 +16,7 @@ export class PerfilPage implements OnInit {
   editando: boolean = false;
   arquivoFoto: File | null = null;
   previewFoto: string | null = null;
+  timestamp: number = new Date().getTime();
 
   constructor(
     private apiService: ApiService,
@@ -54,6 +55,9 @@ export class PerfilPage implements OnInit {
     }
   }
 
+
+
+  
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -64,7 +68,7 @@ export class PerfilPage implements OnInit {
       }
 
       // Verificar tamanho do arquivo (ex: máximo 5MB)
-      if (file.size > 5 * 1024 * 1024) {
+      if (file.size > 10 * 1024 * 1024) {
         this.mostrarErro('A imagem deve ter no máximo 5MB');
         return;
       }
@@ -79,34 +83,39 @@ export class PerfilPage implements OnInit {
       reader.readAsDataURL(file);
     }
   }
+  
 uploadFoto() {
-  if (!this.arquivoFoto) return;
+  if (!this.arquivoFoto) {
+    this.mostrarErro('Nenhuma imagem selecionada para upload.');
+    return;
+  }
 
   const formData = new FormData();
   formData.append('picture', this.arquivoFoto);
 
   this.apiService.post('usuario/foto-upload', formData).subscribe({
-    next: (resp) => {
+    next: (resp: any) => {
       console.log('Foto atualizada!', resp);
-      this.usuario.picture = resp.picture_url;
+
+      const baseUrl = 'http://localhost:8000/'; // ✅ SUBSTITUA pela URL real da sua API
+
+      this.usuario.picture = resp.picture_url.startsWith('http')
+        ? resp.picture_url
+        : baseUrl + resp.picture_url.replace(/^\/+/, ''); // Remove barras duplicadas
+
       this.arquivoFoto = null;
       this.previewFoto = null;
+
       this.mostrarSucesso('Foto atualizada com sucesso!');
     },
     error: (err) => {
       console.error('Erro detalhado:', err);
-      
-      // Erro específico do backend
-      if (err.status === 500 && err.error?.message) {
-        this.mostrarErro('Erro no servidor: ' + err.error.message);
-      } else if (err.status === 500) {
-        this.mostrarErro('Erro interno no servidor. Contate o administrador.');
-      } else {
-        this.mostrarErro('Erro ao atualizar foto');
-      }
+      this.mostrarErro('Erro ao atualizar foto');
     }
   });
 }
+
+
   toggleEdicao() {
     this.editando = !this.editando;
   }

@@ -18,7 +18,7 @@
   <div class="ion-padding" *ngIf="!carregando && usuario">
     <!-- Foto de Perfil -->
     <div class="foto-container">
-      <img [src]="previewFoto || usuario.picture" class="foto-perfil" alt="Foto de perfil">
+      <img [src]="previewFoto || user.picture" class="foto-perfil" alt="Foto de perfil">
       
       <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)">
       <ion-button fill="clear" (click)="fileInput.click()">

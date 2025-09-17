@@ -32,6 +32,13 @@ export class ApiService {
     return this.http.post(`${this.URL}/${endpoint}`, data, { headers });
   }
 
+  getFotoUrl(caminho: string | null): string {
+  if (!caminho) return 'assets/default-avatar.png';
+  if (caminho.startsWith('http')) return caminho;
+  return `http://127.0.0.1:8000/storage/${caminho}`;
+}
+
+
   put(endpoint: string, data: any): Observable<any> {
     // Mesma lógica para PUT
     if (data instanceof FormData) {
