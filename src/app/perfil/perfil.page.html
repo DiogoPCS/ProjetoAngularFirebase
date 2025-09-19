@@ -10,22 +10,23 @@
 </ion-header>
 
 <ion-content>
+  <!-- Carregando -->
   <div class="ion-padding" *ngIf="carregando">
     <ion-spinner></ion-spinner>
     <p>Carregando perfil...</p>
   </div>
 
+  <!-- Perfil carregado -->
   <div class="ion-padding" *ngIf="!carregando && usuario">
+
     <!-- Foto de Perfil -->
-    <div class="foto-container">
-      <img [src]="previewFoto || user.picture" class="foto-perfil" alt="Foto de perfil">
-      
+    <div class="foto-container ion-text-center">
+      <img [src]="previewFoto || usuario.picture" class="foto-perfil" alt="Foto de perfil">
       <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)">
       <ion-button fill="clear" (click)="fileInput.click()">
-        <ion-icon name="camera-outline"></ion-icon>
+        <ion-icon name="camera-outline" slot="start"></ion-icon>
         Alterar Foto
       </ion-button>
-
       <ion-button *ngIf="arquivoFoto" (click)="uploadFoto()" fill="solid">
         Enviar Foto
       </ion-button>
@@ -52,12 +53,12 @@
     <!-- Botões de Ação -->
     <div class="ion-margin-top">
       <ion-button *ngIf="!editando" (click)="toggleEdicao()" expand="block">
-        <ion-icon name="create-outline"></ion-icon>
+        <ion-icon name="create-outline" slot="start"></ion-icon>
         Editar Perfil
       </ion-button>
 
       <ion-button *ngIf="editando" (click)="salvarPerfil()" expand="block" color="success">
-        <ion-icon name="save-outline"></ion-icon>
+        <ion-icon name="save-outline" slot="start"></ion-icon>
         Salvar Alterações
       </ion-button>
 
@@ -65,5 +66,71 @@
         Cancelar
       </ion-button>
     </div>
+
+    <!-- Nova Postagem -->
+    <ion-card class="nova-postagem-card ion-margin-top">
+      <ion-card-header>
+        <ion-card-title>Criar Nova Postagem</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Título</ion-label>
+          <ion-input [(ngModel)]="novaPostagem.titulo" placeholder="Digite o título"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Conteúdo</ion-label>
+          <ion-textarea [(ngModel)]="novaPostagem.conteudo" placeholder="Escreva algo..."></ion-textarea>
+        </ion-item>
+
+        <div class="ion-text-center ion-margin-top">
+          <input type="file" #imagemInput hidden accept="image/*" (change)="onImagemPostagemSelecionada($event)">
+          <ion-button fill="outline" (click)="imagemInput.click()">
+            <ion-icon name="image-outline" slot="start"></ion-icon>
+            Adicionar Imagem
+          </ion-button>
+        </div>
+
+        <div *ngIf="novaPostagem.previewImagem">
+          <img [src]="novaPostagem.previewImagem" class="preview-imagem" />
+        </div>
+
+        <ion-button expand="block" color="primary" class="ion-margin-top" (click)="criarPostagem()">
+          <ion-icon name="send-outline" slot="start"></ion-icon>
+          Publicar
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Postagens -->
+    <ion-grid *ngIf="usuario?.postagens?.length > 0" class="ion-padding">
+      <ion-row>
+        <ion-col size="12">
+          <h2>Minhas Postagens</h2>
+        </ion-col>
+
+        <ion-col size="12" *ngFor="let post of usuario.postagens">
+          <ion-card>
+            <img *ngIf="post.imagem" [src]="post.imagem" alt="Imagem da postagem" />
+            <ion-card-header>
+              <ion-card-title>{{ post.titulo }}</ion-card-title>
+              <ion-card-subtitle>{{ post.data | date:'dd/MM/yyyy HH:mm' }}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              {{ post.conteudo }}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="usuario?.postagens?.length === 0">
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-icon name="document-outline" size="large" color="medium"></ion-icon>
+          <p class="ion-padding-top">Você ainda não tem postagens.</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

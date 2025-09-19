@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../shared/api.service';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular'; // Adicione esta importação
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil',
@@ -16,13 +16,20 @@ export class PerfilPage implements OnInit {
   editando: boolean = false;
   arquivoFoto: File | null = null;
   previewFoto: string | null = null;
-  timestamp: number = new Date().getTime();
+
+  // Postagens
+  novaPostagem: any = {
+    titulo: '',
+    conteudo: '',
+    imagem: null,
+    previewImagem: null
+  };
 
   constructor(
     private apiService: ApiService,
     private storage: Storage,
     private router: Router,
-    private alertController: AlertController // Adicione esta injeção
+    private alertController: AlertController
   ) { }
 
   async ngOnInit() {
@@ -55,27 +62,21 @@ export class PerfilPage implements OnInit {
     }
   }
 
-
-
-  
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      // Verificar se é uma imagem
       if (!file.type.startsWith('image/')) {
         this.mostrarErro('Por favor, selecione apenas imagens');
         return;
       }
 
-      // Verificar tamanho do arquivo (ex: máximo 5MB)
       if (file.size > 10 * 1024 * 1024) {
-        this.mostrarErro('A imagem deve ter no máximo 5MB');
+        this.mostrarErro('A imagem deve ter no máximo 10MB');
         return;
       }
 
       this.arquivoFoto = file;
-      
-      // Criar preview
+
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.previewFoto = e.target.result;
@@ -83,60 +84,51 @@ export class PerfilPage implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-  
-uploadFoto() {
-  if (!this.arquivoFoto) {
-    this.mostrarErro('Nenhuma imagem selecionada para upload.');
-    return;
-  }
 
-  const formData = new FormData();
-  formData.append('picture', this.arquivoFoto);
-
-  this.apiService.post('usuario/foto-upload', formData).subscribe({
-    next: (resp: any) => {
-      console.log('Foto atualizada!', resp);
-
-      const baseUrl = 'http://localhost:8000/'; // ✅ SUBSTITUA pela URL real da sua API
-
-      this.usuario.picture = resp.picture_url.startsWith('http')
-        ? resp.picture_url
-        : baseUrl + resp.picture_url.replace(/^\/+/, ''); // Remove barras duplicadas
-
-      this.arquivoFoto = null;
-      this.previewFoto = null;
-
-      this.mostrarSucesso('Foto atualizada com sucesso!');
-    },
-    error: (err) => {
-      console.error('Erro detalhado:', err);
-      this.mostrarErro('Erro ao atualizar foto');
+  uploadFoto() {
+    if (!this.arquivoFoto) {
+      this.mostrarErro('Nenhuma imagem selecionada para upload.');
+      return;
     }
-  });
-}
 
+    const formData = new FormData();
+    formData.append('picture', this.arquivoFoto);
+
+    this.apiService.post('usuario/foto-upload', formData).subscribe({
+      next: (resp: any) => {
+        const baseUrl = 'http://localhost:8000/';
+        this.usuario.picture = resp.picture_url.startsWith('http')
+          ? resp.picture_url
+          : baseUrl + resp.picture_url.replace(/^\/+/, '');
+
+        this.arquivoFoto = null;
+        this.previewFoto = null;
+        this.mostrarSucesso('Foto atualizada com sucesso!');
+      },
+      error: (err) => {
+        console.error('Erro ao atualizar foto', err);
+        this.mostrarErro('Erro ao atualizar foto');
+      }
+    });
+  }
 
   toggleEdicao() {
     this.editando = !this.editando;
   }
 
   salvarPerfil() {
-    // Validação básica
     if (!this.usuario.name || !this.usuario.email) {
       this.mostrarErro('Nome e e-mail são obrigatórios');
       return;
     }
 
     this.apiService.post('usuario/editar', this.usuario).subscribe({
-      next: (resp) => {
-        console.log('Perfil atualizado!', resp);
+      next: () => {
         this.editando = false;
         this.mostrarSucesso('Perfil atualizado com sucesso!');
       },
       error: (err) => {
         console.error('Erro ao salvar', err);
-        
-        // Tratamento específico para erro de e-mail duplicado
         if (err.status === 422 && err.error?.errors?.email) {
           this.mostrarErro('Este e-mail já está em uso por outro usuário');
         } else {
@@ -151,19 +143,14 @@ uploadFoto() {
       header: 'Sair',
       message: 'Deseja realmente sair?',
       buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        },
+        { text: 'Cancelar', role: 'cancel' },
         {
           text: 'Sair',
-          handler: () => {
-            this.realizarLogout();
-          }
+          handler: () => this.realizarLogout()
         }
       ]
     });
-    
+
     await alert.present();
   }
 
@@ -174,15 +161,61 @@ uploadFoto() {
         await this.storage.remove('user_data');
         this.router.navigate(['/home']);
       },
-      error: (err) => {
+      error: async (err) => {
         console.error('Erro no logout', err);
-        // Mesmo com erro, limpa o storage local
-        this.storage.remove('auth_token');
-        this.storage.remove('user_data');
+        await this.storage.remove('auth_token');
+        await this.storage.remove('user_data');
         this.router.navigate(['/home']);
       }
     });
   }
+
+  // ========== POSTAGENS ==========
+
+  onImagemPostagemSelecionada(event: any) {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      this.novaPostagem.imagem = file;
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.novaPostagem.previewImagem = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      this.mostrarErro('Selecione uma imagem válida.');
+    }
+  }
+
+  criarPostagem() {
+    const { titulo, conteudo, imagem } = this.novaPostagem;
+
+    if (!titulo || !conteudo) {
+      this.mostrarErro('Título e conteúdo são obrigatórios.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('titulo', titulo);
+    formData.append('conteudo', conteudo);
+    if (imagem) {
+      formData.append('imagem', imagem);
+    }
+
+    this.apiService.post('usuario/postagens', formData).subscribe({
+      next: (resp: any) => {
+        this.mostrarSucesso('Postagem publicada!');
+        this.novaPostagem = { titulo: '', conteudo: '', imagem: null, previewImagem: null };
+        this.usuario.postagens = [resp, ...(this.usuario.postagens || [])];
+      },
+      error: (err) => {
+        console.error('Erro ao publicar', err);
+        this.mostrarErro('Erro ao publicar postagem');
+      }
+    });
+  }
+
+  // ========== ALERTAS ==========
 
   private async mostrarErro(mensagem: string) {
     const alert = await this.alertController.create({
