@@ -26,7 +26,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),   // 👈 necessário para reconhecer <ion-app>
+    IonicModule.forRoot(),
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
