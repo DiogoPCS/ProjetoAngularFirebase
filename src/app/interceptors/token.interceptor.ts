@@ -14,6 +14,9 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return from(this.storage.get('auth_token')).pipe(
       switchMap(token => {
+        console.log('Interceptando requisição para:', req.url);
+        console.log('Token encontrado:', token);
+
         if (token) {
           const cloned = req.clone({
             setHeaders: {
@@ -22,8 +25,6 @@ export class TokenInterceptor implements HttpInterceptor {
           });
           return next.handle(cloned);
         }
-
-        // Se não houver token, segue a requisição original
         return next.handle(req);
       })
     );

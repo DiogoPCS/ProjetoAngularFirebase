@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from '../shared/api.service';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
 })
-export class PerfilPage implements OnInit {
-
+export class PerfilPage implements OnInit, OnDestroy {
   usuario: any = null;
-  carregando: boolean = true;
-  editando: boolean = false;
+  carregando = true;
+  editando = false;
+
   arquivoFoto: File | null = null;
   previewFoto: string | null = null;
 
@@ -22,6 +23,8 @@ export class PerfilPage implements OnInit {
     imagem: null,
     previewImagem: null
   };
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private apiService: ApiService,
@@ -34,158 +37,214 @@ export class PerfilPage implements OnInit {
     await this.carregarUsuario();
   }
 
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   async carregarUsuario() {
     const token = await this.storage.get('auth_token');
     if (!token) {
+      await this.storage.clear();
       this.router.navigate(['/home']);
       return;
     }
 
-    this.apiService.get('usuario/perfil').subscribe({
-      next: (resp) => {
-        this.usuario = resp;
-        if (!this.usuario.postagens) this.usuario.postagens = [];
+    this.carregando = true;
 
-        // Atualiza cada postagem com URL completa automaticamente
-        this.usuario.postagens = this.usuario.postagens.map((post: any) => ({
-          ...post,
-          fotoUrl: this.getFotoPostagem(post.picture)
-        }));
+    this.apiService.get('usuario/perfil')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (resp: any) => {
+          this.usuario = resp || {};
+          if (!this.usuario.postagens) this.usuario.postagens = [];
 
-        // Foto de perfil
-        this.usuario.pictureUrl = this.getFotoPerfil(this.usuario.picture);
+          // Normaliza URLs das postagens
+          this.usuario.postagens = this.usuario.postagens.map((post: any) => ({
+            ...post,
+            fotoUrl: this.apiService.getFotoUrl(post.picture)
+          }));
 
-        this.carregando = false;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar perfil', err);
-        this.carregando = false;
-        this.mostrarErro('Erro ao carregar perfil');
-      }
-    });
+          // Normaliza URL da foto de perfil
+          this.usuario.pictureUrl = this.apiService.getFotoUrl(this.usuario.picture);
+
+          this.carregando = false;
+        },
+        error: (err) => {
+          console.error('Erro ao carregar perfil', err);
+          this.carregando = false;
+          this.mostrarErro('Erro ao carregar perfil');
+        }
+      });
   }
 
-  // ========== FOTO DE PERFIL ==========
   onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file && file.type.startsWith('image/')) {
+    const file = event?.target?.files?.[0];
+    if (file && file.type && file.type.startsWith('image/')) {
       this.arquivoFoto = file;
+
       const reader = new FileReader();
       reader.onload = (e: any) => this.previewFoto = e.target.result;
       reader.readAsDataURL(file);
-    } else this.mostrarErro('Selecione apenas imagens válidas.');
+    } else {
+      this.mostrarErro('Selecione apenas imagens válidas.');
+      this.arquivoFoto = null;
+      this.previewFoto = null;
+    }
   }
 
   uploadFoto() {
-    if (!this.arquivoFoto) return this.mostrarErro('Nenhuma imagem selecionada.');
+    if (!this.arquivoFoto) {
+      this.mostrarErro('Nenhuma imagem selecionada.');
+      return;
+    }
 
     const formData = new FormData();
-    formData.append('picture', this.arquivoFoto);
+    formData.append('picture', this.arquivoFoto, this.arquivoFoto.name);
 
-    this.apiService.post('usuario/foto-upload', formData).subscribe({
-      next: (resp: any) => {
-        this.usuario.picture = resp.picture_url;
-        this.usuario.pictureUrl = this.getFotoPerfil(resp.picture_url);
-        this.arquivoFoto = null;
-        this.previewFoto = null;
-        this.mostrarSucesso('Foto de perfil atualizada!');
-      },
-      error: (err) => {
-        console.error(err);
-        this.mostrarErro('Erro ao atualizar foto');
-      }
-    });
+    this.apiService.post('usuario/foto-upload', formData)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (resp: any) => {
+          if (resp?.picture_url) {
+            // Atualiza URL com cache busting para forçar atualização no navegador
+            this.usuario.pictureUrl = this.apiService.getFotoUrl(resp.picture_url) + '?t=' + new Date().getTime();
+            this.usuario.picture = resp.picture_url;
+            this.mostrarSucesso('Foto de perfil atualizada!');
+          } else {
+            // Caso não retorne URL, recarrega perfil
+            this.carregarUsuario();
+            this.mostrarSucesso('Foto enviada! Atualizando perfil...');
+          }
+
+          // Reset preview e arquivo
+          this.arquivoFoto = null;
+          this.previewFoto = null;
+        },
+        error: (err) => {
+          console.error('Erro no upload:', err);
+          if (err.status === 0) {
+            this.mostrarErro('Não foi possível conectar ao servidor.');
+          } else if (err.status >= 400 && err.status < 500) {
+            this.mostrarErro('Erro no envio da imagem. Verifique os dados.');
+          } else if (err.status >= 500) {
+            this.mostrarErro('Erro no servidor. Tente novamente mais tarde.');
+          } else {
+            this.mostrarErro('Erro desconhecido ao enviar foto.');
+          }
+        }
+      });
   }
 
-  toggleEdicao() { this.editando = !this.editando; }
+  toggleEdicao() {
+    this.editando = !this.editando;
+  }
 
   salvarPerfil() {
-    if (!this.usuario.name || !this.usuario.email) return this.mostrarErro('Nome e e-mail são obrigatórios');
+    if (!this.usuario?.name || !this.usuario?.email) {
+      this.mostrarErro('Nome e e-mail são obrigatórios');
+      return;
+    }
 
-    this.apiService.post('usuario/editar', this.usuario).subscribe({
-      next: () => { this.editando = false; this.mostrarSucesso('Perfil atualizado!'); },
-      error: (err) => { console.error(err); this.mostrarErro('Erro ao salvar perfil'); }
-    });
+    this.apiService.post('usuario/editar', this.usuario)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (resp: any) => {
+          this.editando = false;
+          if (resp?.user) this.usuario = { ...this.usuario, ...resp.user };
+          this.mostrarSucesso('Perfil atualizado!');
+        },
+        error: (err) => {
+          console.error('Erro ao salvar perfil', err);
+          this.mostrarErro('Erro ao salvar perfil');
+        }
+      });
   }
 
-  // ========== POSTAGENS ==========
   onImagemPostagemSelecionada(event: any) {
-    const file = event.target.files[0];
-    if (file && file.type.startsWith('image/')) {
+    const file = event?.target?.files?.[0];
+    if (file && file.type && file.type.startsWith('image/')) {
       this.novaPostagem.imagem = file;
       const reader = new FileReader();
       reader.onload = (e: any) => this.novaPostagem.previewImagem = e.target.result;
       reader.readAsDataURL(file);
-    } else this.mostrarErro('Selecione uma imagem válida.');
+    } else {
+      this.mostrarErro('Selecione uma imagem válida.');
+    }
   }
 
   criarPostagem() {
     const { conteudo, imagem } = this.novaPostagem;
-    if (!conteudo) return this.mostrarErro('Conteúdo é obrigatório.');
-
-    const formData = new FormData();
-    formData.append('description', conteudo);
-    if (imagem) formData.append('picture', imagem);
-
-    this.apiService.post('usuario/postagens', formData).subscribe({
-      next: (resp: any) => {
-        resp.fotoUrl = this.getFotoPostagem(resp.picture);
-        this.usuario.postagens.unshift(resp);
-        this.novaPostagem = { conteudo: '', imagem: null, previewImagem: null };
-        this.mostrarSucesso('Postagem publicada!');
-      },
-      error: (err) => { console.error(err); this.mostrarErro('Erro ao publicar postagem'); }
-    });
-  }
-
-  // ========== FUNÇÕES AUTOMÁTICAS DE URL ==========
-  getFotoPerfil(caminho: string | null): string {
-    if (!caminho) return 'assets/default-avatar.png';
-    if (caminho.startsWith('http')) return caminho;
-    return `http://127.0.0.1:8000/storage/${caminho.replace(/^\/+/, '')}`;
-  }
-
-  getFotoPostagem(caminho: string | null): string {
-    if (!caminho) return '';
-    if (caminho.startsWith('http')) return caminho;
-
-    // Detecta automaticamente se está em "postagens" ou "pictures"
-    const base = 'http://127.0.0.1:8000/storage/';
-    if (caminho.includes('postagens') || caminho.includes('pictures')) {
-      return `${base}${caminho.replace(/^\/+/, '')}`;
+    if (!conteudo || !conteudo.trim()) {
+      this.mostrarErro('Conteúdo é obrigatório.');
+      return;
     }
 
-    // Caso só tenha o nome do arquivo
-    return `${base}postagens/${caminho}`;
+    const formData = new FormData();
+    formData.append('description', conteudo.trim());
+    if (imagem) formData.append('picture', imagem, imagem.name);
+
+    this.apiService.post('usuario/postagens', formData)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (resp: any) => {
+          const post = {
+            ...resp,
+            fotoUrl: this.apiService.getFotoUrl(resp.picture)
+          };
+          if (!this.usuario.postagens) this.usuario.postagens = [];
+          this.usuario.postagens.unshift(post);
+
+          this.novaPostagem = { conteudo: '', imagem: null, previewImagem: null };
+          this.mostrarSucesso('Postagem publicada!');
+        },
+        error: (err) => {
+          console.error('Erro ao publicar postagem', err);
+          this.mostrarErro('Erro ao publicar postagem');
+        }
+      });
   }
 
-  // ========== ALERTAS ==========
   private async mostrarErro(mensagem: string) {
-    const alert = await this.alertController.create({ header: 'Erro', message: mensagem, buttons: ['OK'] });
+    const alert = await this.alertController.create({
+      header: 'Erro',
+      message: mensagem,
+      buttons: ['OK']
+    });
     await alert.present();
   }
 
   private async mostrarSucesso(mensagem: string) {
-    const alert = await this.alertController.create({ header: 'Sucesso', message: mensagem, buttons: ['OK'] });
+    const alert = await this.alertController.create({
+      header: 'Sucesso',
+      message: mensagem,
+      buttons: ['OK']
+    });
     await alert.present();
   }
 
-  // ========== LOGOUT ==========
   async logout() {
-    await this.alertController.create({
+    const alert = await this.alertController.create({
       header: 'Sair',
       message: 'Deseja realmente sair?',
       buttons: [
         { text: 'Cancelar', role: 'cancel' },
         { text: 'Sair', handler: () => this.realizarLogout() }
       ]
-    }).then(a => a.present());
+    });
+    await alert.present();
   }
 
   private realizarLogout() {
     this.apiService.post('usuario/logout', {}).subscribe({
-      next: async () => { await this.storage.clear(); this.router.navigate(['/home']); },
-      error: async () => { await this.storage.clear(); this.router.navigate(['/home']); }
+      next: async () => {
+        await this.storage.clear();
+        this.router.navigate(['/home']);
+      },
+      error: async () => {
+        await this.storage.clear();
+        this.router.navigate(['/home']);
+      }
     });
   }
 }

@@ -1,59 +1,64 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Meu Perfil</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="logout()"><ion-icon name="log-out-outline"></ion-icon></ion-button>
+      <ion-button fill="clear" (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
-  <!-- Carregando -->
+  <!-- Loading -->
   <div *ngIf="carregando" class="ion-text-center">
-    <ion-spinner name="crescent"></ion-spinner>
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
     <p>Carregando perfil...</p>
   </div>
 
-  <!-- Perfil carregado -->
+  <!-- Perfil -->
   <div *ngIf="!carregando && usuario">
 
-    <!-- Foto de Perfil -->
-    <div class="foto-container ion-text-center">
-      <img [src]="previewFoto || usuario.pictureUrl" class="foto-perfil" alt="Foto de perfil" />
-      <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)">
-      <ion-button fill="clear" (click)="fileInput.click()">
-        <ion-icon name="camera-outline" slot="start"></ion-icon> Alterar Foto
-      </ion-button>
-      <ion-button *ngIf="arquivoFoto" color="success" (click)="uploadFoto()">Enviar Foto</ion-button>
-    </div>
+    <ion-card class="perfil-card">
+      <div class="foto-container ion-text-center">
+        <img [src]="previewFoto || usuario.pictureUrl" class="foto-perfil" alt="Foto de perfil" />
+        <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)">
+        <ion-button size="small" fill="outline" (click)="fileInput.click()">
+          <ion-icon name="camera-outline" slot="start"></ion-icon> Alterar Foto
+        </ion-button>
+        <ion-button *ngIf="arquivoFoto" size="small" color="success" (click)="uploadFoto()">Enviar</ion-button>
+      </div>
 
-    <!-- Dados do Usuário -->
-    <ion-list>
-      <ion-item>
-        <ion-label position="stacked">Nome</ion-label>
-        <ion-input [readonly]="!editando" [(ngModel)]="usuario.name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Email</ion-label>
-        <ion-input [readonly]="!editando" [(ngModel)]="usuario.email" type="email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Status</ion-label>
-        <ion-input [readonly]="true" [value]="usuario.status"></ion-input>
-      </ion-item>
-    </ion-list>
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-label position="stacked">Nome</ion-label>
+            <ion-input [readonly]="!editando" [(ngModel)]="usuario.name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input [readonly]="!editando" [(ngModel)]="usuario.email" type="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Status</ion-label>
+            <ion-input [readonly]="true" [value]="usuario.status"></ion-input>
+          </ion-item>
+        </ion-list>
 
-    <!-- Botões -->
-    <div class="ion-margin-top">
-      <ion-button *ngIf="!editando" expand="block" (click)="toggleEdicao()">Editar Perfil</ion-button>
-      <ion-button *ngIf="editando" expand="block" color="success" (click)="salvarPerfil()">Salvar Alterações</ion-button>
-      <ion-button *ngIf="editando" expand="block" color="medium" fill="outline" (click)="toggleEdicao()">Cancelar</ion-button>
-    </div>
+        <div class="botoes-perfil">
+          <ion-button *ngIf="!editando" expand="block" (click)="toggleEdicao()">Editar Perfil</ion-button>
+          <ion-button *ngIf="editando" expand="block" color="success" (click)="salvarPerfil()">Salvar</ion-button>
+          <ion-button *ngIf="editando" expand="block" color="medium" fill="outline" (click)="toggleEdicao()">Cancelar</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
 
     <!-- Nova Postagem -->
-    <ion-card class="nova-postagem-card ion-margin-top">
-      <ion-card-header><ion-card-title>Criar Nova Postagem</ion-card-title></ion-card-header>
+    <ion-card class="nova-postagem-card">
+      <ion-card-header>
+        <ion-card-title>Criar Nova Postagem</ion-card-title>
+      </ion-card-header>
       <ion-card-content>
         <ion-item>
           <ion-label position="stacked">Conteúdo</ion-label>
@@ -64,7 +69,7 @@
           <ion-button fill="outline" (click)="imagemInput.click()">Adicionar Imagem</ion-button>
         </div>
         <div *ngIf="novaPostagem.previewImagem" class="ion-text-center ion-margin-top">
-          <img [src]="novaPostagem.previewImagem" class="preview-imagem" />
+          <img [src]="novaPostagem.previewImagem" class="preview-imagem" alt="Pré-visualização da imagem" />
         </div>
         <ion-button expand="block" color="primary" class="ion-margin-top" (click)="criarPostagem()">Publicar</ion-button>
       </ion-card-content>
@@ -72,8 +77,8 @@
 
     <!-- Postagens -->
     <ion-list *ngIf="usuario?.postagens?.length > 0; else semPostagens">
-      <ion-item *ngFor="let post of usuario.postagens">
-        <ion-card>
+      <ion-item lines="none" *ngFor="let post of usuario.postagens">
+        <ion-card class="postagem-card">
           <img *ngIf="post.fotoUrl" [src]="post.fotoUrl" alt="Imagem da postagem" />
           <ion-card-header>
             <ion-card-subtitle>{{ post.data ? (post.data | date:'dd/MM/yyyy HH:mm') : 'Data indisponível' }}</ion-card-subtitle>
@@ -91,4 +96,5 @@
     </ng-template>
 
   </div>
+
 </ion-content>

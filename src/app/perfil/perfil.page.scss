@@ -1,8 +1,17 @@
+/* Card do perfil */
+.perfil-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Foto */
 .foto-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  text-align: center;
 }
 
 .foto-perfil {
@@ -10,17 +19,65 @@
   height: 140px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #3880ff;
+  border: 3px solid var(--ion-color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
+  transition: transform 0.3s ease;
 }
 
-ion-card img {
-  width: 100%;
-  height: auto;
+.foto-perfil:hover {
+  transform: scale(1.05);
+}
+
+/* Botões dentro do perfil */
+.botoes-perfil ion-button {
+  margin-top: 10px;
+  --border-radius: 12px;
+  font-weight: 600;
+}
+
+/* Inputs */
+ion-item {
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+  --border-radius: 8px;
+  margin-bottom: 10px;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+}
+
+/* Nova Postagem */
+.nova-postagem-card {
+  border-radius: 16px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Preview da imagem */
+.preview-imagem {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 10px;
+  margin-top: 12px;
   object-fit: cover;
-  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-ion-card {
-  margin-bottom: 16px;
+/* Postagens */
+.postagem-card {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  width: 100%;
+}
+
+.postagem-card:hover {
+  transform: translateY(-3px);
+}
+
+.postagem-card img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
 }
