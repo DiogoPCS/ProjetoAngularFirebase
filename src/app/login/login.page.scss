@@ -1,0 +1,48 @@
+ion-content {
+  --background: #f7f8fa;
+}
+
+form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+ion-item {
+  --background: #fafafa;
+  --border-radius: 6px;
+  margin-bottom: 16px;
+
+}
+
+ion-label {
+  color: #000000;
+  font-weight: 600;
+}
+
+ion-input {
+  font-size: 16px;
+  color: #222;
+}
+
+ion-button {
+  --background: #3880ff;
+  --background-hover: #3171e0;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 6px;
+}
+
+ion-button ion-spinner {
+  margin-right: 8px;
+}
+
+span {
+  vertical-align: middle;
+}
+p{
+    color: #000000;
+}

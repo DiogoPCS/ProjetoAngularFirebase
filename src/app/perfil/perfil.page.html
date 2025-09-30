@@ -20,31 +20,34 @@
   <!-- Perfil -->
   <div *ngIf="!carregando && usuario">
 
-    <ion-card class="perfil-card">
+    <ion-card class="perfil-card" style="height: 100%; display: flex; align-items: center; justify-content: center;">
       <div class="foto-container ion-text-center">
         <img [src]="previewFoto || usuario.pictureUrl" class="foto-perfil" alt="Foto de perfil" />
         <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)">
-        <ion-button size="small" fill="outline" (click)="fileInput.click()">
+        <ion-button class="alterPicture" fill="outline" (click)="fileInput.click()">
           <ion-icon name="camera-outline" slot="start"></ion-icon> Alterar Foto
         </ion-button>
         <ion-button *ngIf="arquivoFoto" size="small" color="success" (click)="uploadFoto()">Enviar</ion-button>
       </div>
 
       <ion-card-content>
-        <ion-list lines="none">
-          <ion-item>
-            <ion-label position="stacked">Nome</ion-label>
-            <ion-input [readonly]="!editando" [(ngModel)]="usuario.name"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input [readonly]="!editando" [(ngModel)]="usuario.email" type="email"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Status</ion-label>
-            <ion-input [readonly]="true" [value]="usuario.status"></ion-input>
-          </ion-item>
-        </ion-list>
+        <ion-list lines="none" class="perfil-info">
+  <div class="perfil-item">
+    <ion-label position="stacked">Nome</ion-label>
+    <ion-input [readonly]="!editando" [(ngModel)]="usuario.name"></ion-input>
+  </div>
+
+  <div class="perfil-item">
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input [readonly]="!editando" [(ngModel)]="usuario.email" type="email"></ion-input>
+  </div>
+
+  <div class="perfil-item">
+    <ion-label position="stacked">Status</ion-label>
+    <ion-input [readonly]="true" [value]="usuario.status"></ion-input>
+  </div>
+</ion-list>
+
 
         <div class="botoes-perfil">
           <ion-button *ngIf="!editando" expand="block" (click)="toggleEdicao()">Editar Perfil</ion-button>

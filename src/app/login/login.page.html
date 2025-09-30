@@ -4,21 +4,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <form (submit)="login()">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
-    </ion-item>
+<ion-content [fullscreen]="true">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-md="6">
+      <form (submit)="login()">
+        <ion-item>
+         
+          <ion-input label="E-mail" type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="senha" name="senha" required></ion-input>
-    </ion-item>
+        <ion-item>
+          
+          <ion-input label="Senha" type="password" [(ngModel)]="senha" name="senha" required></ion-input>
+        </ion-item>
 
-    <ion-button expand="block" type="submit" [disabled]="carregando">
-      <ion-spinner *ngIf="carregando" name="dots"></ion-spinner>
-      <span *ngIf="!carregando">Entrar</span>
-    </ion-button>
-  </form>
+        <ion-button expand="block" type="submit" [disabled]="carregando">
+          <ion-spinner *ngIf="carregando" name="dots"></ion-spinner>
+          <span *ngIf="!carregando">Entrar</span>
+        </ion-button>
+
+        <p>
+  Não tem uma conta?
+  <a routerLink="/home">Cadastre-se</a>
+</p>
+      </form>
+    </ion-col>
+  </ion-row>
 </ion-content>

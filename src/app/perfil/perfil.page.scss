@@ -3,13 +3,16 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  width: 80%;  /* Largura do card limitada para 80% da tela */
+  max-width: 600px;  /* Máxima largura de 600px */
+  margin: 20px auto; /* Centraliza o card horizontalmente e adiciona espaço acima e abaixo */
+  display: block;
 }
 
 /* Foto */
 .foto-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 20px 0;
   text-align: center;
 }
@@ -34,6 +37,19 @@
   margin-top: 10px;
   --border-radius: 12px;
   font-weight: 600;
+  color: white;
+}
+.alterPicture{
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: left;
+  width: 130px;
+}
+
+.alterPicture:hover{
+  background-color: rgb(0, 119, 43);
+  transition: 600ms linear;
+  color: #fff;
 }
 
 /* Inputs */
@@ -51,12 +67,16 @@ ion-item {
 .nova-postagem-card {
   border-radius: 16px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  width: 80%;  /* Largura do card limitada para 80% da tela */
+  max-width: 600px;  /* Máxima largura de 600px */
+  margin: 20px auto; /* Centraliza o card horizontalmente */
+  display: block;
 }
 
 /* Preview da imagem */
 .preview-imagem {
   max-width: 100%;
-  max-height: 250px;
+  max-height: 150px;
   border-radius: 10px;
   margin-top: 12px;
   object-fit: cover;
@@ -69,15 +89,49 @@ ion-item {
   overflow: hidden;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease;
-  width: 100%;
-}
-
-.postagem-card:hover {
-  transform: translateY(-3px);
+  width: 100%;  /* Ajuste de largura para 100% do contêiner */
+  max-width: 300px;  /* Limita a largura do card de postagem */
+  box-sizing: border-box;  /* Garante que padding e margens sejam calculados na largura */
+  margin: 10px auto;  /* Espaçamento entre os cards */
+  display: inline-block;  /* Impede quebra para nova linha */
 }
 
 .postagem-card img {
-  width: 100%;
-  max-height: 300px;
+  width: 100%;  /* Imagem ocupa toda a largura do card */
   object-fit: cover;
+  height: auto;
+  max-height: 200px; /* Limita a altura da imagem */
 }
+
+/* Layout das postagens */
+ion-list {
+  display: flex;
+  flex-wrap: wrap;  /* Permite que os cards se movam para a linha seguinte em telas pequenas */
+  gap: 16px; /* Adiciona espaço entre os cards */
+  justify-content: center; /* Centraliza os cards */
+}
+
+/* Layout do perfil */
+.perfil-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.perfil-item {
+  flex: 1 1 30%;
+  min-width: 200px; /* Limita a largura mínima para cada item */
+}
+
+ion-label {
+  font-weight: bold;
+}
+
+/* Ajuste no container geral */
+ion-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Garante que o conteúdo seja centralizado */
+}
+
