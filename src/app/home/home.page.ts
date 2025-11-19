@@ -4,6 +4,7 @@ import { CrudService } from '../services/crud.service';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { MessageService } from '../services/message.service';
 import { Router } from '@angular/router';
+import { APIService } from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -12,17 +13,29 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  pokemon:any = {
+  funcionario: any = {
     nome: null,
-    poder: null
-  };
+    sobrenome: null
+  }
 
   constructor( 
-    public crudService: CrudService
-  ){ }
+    public apiService: APIService
+    ){ 
+      this.carregarFuncionarios();
+    }
+    carregarFuncionarios(){
+      this.apiService.get('usuarios').subscribe((funcionarios=>{
+        console.log(funcionarios)
+      }))
+    }
 
-  enviar() {
-    this.crudService.insert(this.pokemon, 'pokemons');
-  }
+    cadastar()
+      this.apiService.get('usuarios',this.funcionarios).subscribe((funcionarios=>{
+        console.log(funcionarios)
+      }))
+    }
+ 
+
+ 
 
 }
