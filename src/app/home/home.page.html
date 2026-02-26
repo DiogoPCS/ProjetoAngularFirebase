@@ -1,6 +1,13 @@
 <ion-content [fullscreen]="true">
 
-    <ion-button color="secondary">Teste</ion-button>
+    <!-- <ion-button color="secondary">Teste</ion-button> -->
     
-    
+    <ion-row *ngFor="let tarefa of this.projeto">
+        <ion-col>Descrição: {{ tarefa.descricao}}</ion-col> <!--mustshe-->
+        <ion-col>local:{{ tarefa.local }}</ion-col>
+        <ion-col>Horário de inicio: {{ tarefa.hora_inicio }}</ion-col>
+        <ion-col>Horário de termino: {{ tarefa.hora_termino }}</ion-col>
+        <ion-col>Status: {{ tarefa.status }}</ion-col>
+    </ion-row>
+
 </ion-content>
