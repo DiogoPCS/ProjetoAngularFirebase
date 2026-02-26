@@ -16,6 +16,6 @@ export class HomePage {
     { descricao: "tomar banho",local: "casa", hora_inicio: "19:00" , hora_termino: "22:55", status: "em espera" }, 
     { descricao: "beber agua",local: "todos", hora_inicio: "18:00" , hora_termino: "06:05", status: "em progresso" }, 
     { descricao: "lavar cabelo",local: "casa", hora_inicio: "08:00" , hora_termino: "08:55", status: "em espera" }, 
-    { descricao: "dormir",local: "casa", hora_inicio: "23:00" , hora_termino: "08:00", status: "em espera" }, 
+    { descricao: "dormir",local: "casa", hora_inicio: "23:01" , hora_termino: "08:00", status: "em espera" }, 
   ];
 }
