@@ -12,17 +12,11 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  pokemon:any = {
-    nome: null,
-    poder: null
-  };
-
-  constructor( 
-    public crudService: CrudService
-  ){ }
-
-  enviar() {
-    this.crudService.insert(this.pokemon, 'pokemons');
-  }
+  projeto: any = [
+    { descricao: "tomar banho", local: "casa", hora_inicio: "19:00", hora_termino: "22:50", status: "em espera" },
+    { descricao: "beber água", local: "escola", hora_inicio: "18:30", hora_termino: "18:31", status: "em espera" },
+    { descricao: "enviar e-mail", local: "casa", hora_inicio: "06:00", hora_termino: "07:00", status: "concluído" },
+    { descricao: "alimentar o doguinho", local: "casa", hora_inicio: "19:30", hora_termino: "20:00", status: "em progresso" },
+  ];
 
 }
