@@ -1,6 +1,62 @@
 <ion-content [fullscreen]="true">
 
-    <ion-button color="secondary">Teste</ion-button>
-    
-    
+    <!-- Botão hamburguinho -->
+    <ion-menu contentId="main-content">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Configuração</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <ion-row>
+                <ion-col size="3">
+                    <ion-avatar>
+                        <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg">
+                    </ion-avatar>
+                </ion-col>
+                <ion-col size="9">
+                    <ion-item>
+                        Laura
+                    </ion-item>
+                    <ion-item>
+                        laura.cleidy@gmail.com
+                    </ion-item>
+                    <ion-item>
+                        @laurita
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-icon name="color-fill-outline" slot="start"></ion-icon>
+                        <ion-label>Tema</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+                        <ion-label>Trocar Senha</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="trash-outline" slot="start"></ion-icon>
+                        <ion-label>Deletar Conta</ion-label>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-content>
+    </ion-menu>
+    <div class="ion-page" id="main-content">
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-menu-button></ion-menu-button>
+                </ion-buttons>
+                <ion-title>Sistema 1.0V</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <icon-row>
+                <ion-datetime></ion-datetime>   
+            </icon-row>
+        </ion-content>
+    </div>
 </ion-content>
