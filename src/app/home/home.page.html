@@ -1,6 +1,75 @@
 <ion-content [fullscreen]="true">
 
-    <ion-button color="secondary">Teste</ion-button>
-    
-    
+    <!-- menu hamburgie -->
+    <ion-menu contentId="main-content">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Configurar perfil</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">This is the menu content.</ion-content>
+        <ion-row>
+            <ion-col size="3">
+                <ion-avatar><img src="https://i.pinimg.com/736x/ef/c5/9a/efc59aa134655fd0593d91b029ed2787.jpg" alt=""></ion-avatar>
+            </ion-col> 
+            <ion-col size="9">
+                <ion-item>
+                    <ion-label>
+                        foca
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    foca@hotttyemaiul.com
+                </ion-label>
+            </ion-item>
+               </ion-item>
+            <ion-item>
+                <ion-label>
+                  @focaSileide
+                </ion-label>
+            </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size = "12"> 
+                <ion-item>
+                    <ion-icone>
+                        <ion-icon name="barcode-outline"></ion-icon>
+                        <ion-label> alterar senha</ion-label>
+
+                        
+                
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="brush-outline"></ion-icon>
+                        <ion-label> alterar tema </ion-label>
+                    </ion-item>
+                    
+                        </ion-item>
+                    <ion-item lines="nome">
+                     <ion-icon name="bus-outline"></ion-icon>
+                        <ion-label> desconectar </ion-label>
+                    </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-menu>
+    <div class="ion-page" id="main-content">
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-menu-button></ion-menu-button>
+                </ion-buttons>
+                <ion-title>Pagina incial</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding"> 
+                 <ion-row>
+             <ion-col> 
+       <ion-dataTime> </ion-dataTime>
+        </ion-row>   
+     </ion-content>  
+        </ion-content>
+    </div>
+
 </ion-content>
