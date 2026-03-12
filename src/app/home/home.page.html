@@ -1,6 +1,73 @@
 <ion-content [fullscreen]="true">
 
-    <ion-button color="secondary">Teste</ion-button>
-    
-    
+   <!-- BOTÃO HAMBURGUINHO -->
+   <ion-menu contentId="main-content">
+      <ion-header>
+         <ion-toolbar>
+            <ion-title>Ajustes</ion-title>
+         </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+         <ion-row>
+            <ion-col size="3">
+               <ion-avatar>
+                  <img src="https://wallpapers.com/images/hd/meme-profile-picture-2rhxt0ddudotto63.jpg">
+               </ion-avatar>
+            </ion-col>
+            <ion-col size="9">
+               <ion-item>
+                  Robson
+               </ion-item>
+               <ion-item>
+                  robson44@gmail.com
+               </ion-item>
+               <ion-item>
+                  @senha1234
+               </ion-item>
+            </ion-col>
+         </ion-row>
+
+         <ion-row>
+            <ion-col size="12">
+            <ion-item>
+               <ion-icon name="color-palette-outline" slot="start"></ion-icon>
+               <ion-label>Tema</ion-label>
+                 </ion-item>
+               <ion-item>
+                  <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+                  <ion-label>Resetar Senha</ion-label>
+            </ion-item>
+
+            <ion-item>
+               <ion-icon name="person-remove-outline" slot="start"></ion-icon>
+               <ion-label>Desativar Conta</ion-label>
+            </ion-item>
+
+            </ion-col>
+         </ion-row>
+      </ion-content>
+   </ion-menu>
+
+
+   <div class="ion-page" id="main-content">
+      <ion-header>
+         <ion-toolbar>
+            <ion-buttons slot="start">
+               <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title>Sistema v1.0</ion-title>
+         </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+         <ion-row>
+            <ion-col size="12">
+               <ion-datetime>
+
+               </ion-datetime>
+            </ion-col>
+         </ion-row>
+      </ion-content>
+   </div>
+
+
 </ion-content>
