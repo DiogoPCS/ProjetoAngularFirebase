@@ -1,6 +1,10 @@
 <ion-content [fullscreen]="true">
 
-    <ion-button color="secondary">Teste</ion-button>
+    <ng-container *ngFor="let livro of this.livros">
+     <h1>{{ livro.titulo }}</h1>
+     <p>{{ livro.sinopse }}</p>
+
+    </ng-container>
     
     
 </ion-content>
