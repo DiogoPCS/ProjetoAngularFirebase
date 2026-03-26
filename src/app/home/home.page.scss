@@ -1,0 +1,115 @@
+body {
+  background: #070716;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+}
+
+/* Container da tabela */
+table {
+  width: 75%;
+  margin: 50px auto;
+  border-collapse: collapse;
+  background: linear-gradient(145deg, rgba(20,20,60,0.9), rgba(10,10,30,0.95));
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow:
+    0 0 20px rgba(0, 140, 255, 0.3),
+    0 0 40px rgba(0, 80, 255, 0.2);
+  animation: glow 4s infinite alternate;
+}
+
+/* Animação leve de brilho */
+@keyframes glow {
+  from {
+    box-shadow:
+      0 0 10px rgba(0, 140, 255, 0.2),
+      0 0 20px rgba(0, 80, 255, 0.1);
+  }
+  to {
+    box-shadow:
+      0 0 25px rgba(0, 200, 255, 0.4),
+      0 0 50px rgba(0, 100, 255, 0.3);
+  }
+}
+
+/* Cabeçalho */
+th {
+  background: linear-gradient(90deg, #1a1f4d, #2b2f80);
+  color: #00eaff;
+  padding: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Linhas */
+td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: 0.3s;
+}
+
+/* Hover com efeito neon */
+tr:hover td {
+  background: rgba(0, 234, 255, 0.08);
+  box-shadow: inset 0 0 10px rgba(0, 234, 255, 0.2);
+}
+
+/* Card de categorias */
+ion-card {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 234, 255, 0.3);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 0 8px rgba(0, 234, 255, 0.2);
+  transition: 0.3s;
+}
+
+/* Efeito ao passar no card */
+ion-card:hover {
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.5);
+  transform: scale(1.02);
+}
+
+/* Categorias */
+ion-label {
+  color: #aafaff;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+/* Botões */
+ion-button {
+  --background: linear-gradient(45deg, #00eaff, #0066ff);
+  --color: #fff;
+  margin: 3px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 150, 255, 0.6);
+  transition: 0.2s;
+}
+
+/* Hover botão com glow */
+ion-button:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 0 12px rgba(0, 234, 255, 0.9),
+    0 0 20px rgba(0, 100, 255, 0.7);
+}
+
+/* Ícones */
+ion-icon {
+  font-size: 18px;
+}
+
+/* Pequenos "pontos de estrelas" só dentro da tabela */
+table::before {
+  content: "";
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  margin: auto;
+  pointer-events: none;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.08;
+}

@@ -1,6 +1,38 @@
 <ion-content [fullscreen]="true">
 
-    <ion-button color="secondary">Teste</ion-button>
+    <table border="1">
+        <tr>
+            <th>ISBN</th>
+            <th>Título</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+      <ng-container *ngFor="let livro of this.livros">
+        <tr>
+            <td>{{ livro.isbn }}</td>
+            <td>{{ livro.titulo }}</td>
+            <td>
+                <ion-card>
+                    <ng-container *ngFor=" let cat of livro.categoria">
+                        <ion-label>{{ cat.nome }}</ion-label>
+                        <br>
+                    </ng-container>
+                </ion-card>
+              
+            </td>
+            <td>
+                <ion-button>
+                    <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>
+                 <ion-button>
+                    <ion-icon name="create-outline"></ion-icon>
+                </ion-button>
+            </td>
+        </tr>
+
+        </ng-container>
+        
+    </table>
     
     
 </ion-content>
