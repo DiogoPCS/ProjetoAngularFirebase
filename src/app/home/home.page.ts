@@ -12,12 +12,17 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
- projeto: any [] = [
-  { descricao: 'Banho', local: 'Casa', hora_inicio: '18:00', hora_termino: '18:10', status: 'Concluído'},
-  { descricao: 'Estudar', local: 'Casa', hora_inicio: '18:30', hora_termino: '21:00', status: 'Em andamento'},
-  { descricao: 'Dormir', local: 'Casa', hora_inicio: '22:00', hora_termino: '05:30', status: 'Em espera'},
-  { descricao: 'Ponto-Onibus', local: 'Rua', hora_inicio: '05:50', hora_termino: '06:00', status: 'Em espera'},
-  { descricao: 'Ir-Escola', local: 'Centro-Cidade', hora_inicio: '06:00', hora_termino: '06:30', status: 'Em espera'}
- ];
+  veiculo: any = {
+    modelo: null,
+    marca: null,
+    cor: null
+  }
+
+  concessionario: any = [];
+
+  adicionar(){
+    this.concessionario.push([{...this.veiculo}]);
+    console.log(this.concessionario);
+  }
 
 }
