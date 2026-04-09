@@ -3,7 +3,8 @@ import { AuthenticateService } from '../services/auth.service';
 import { CrudService } from '../services/crud.service';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { MessageService } from '../services/message.service';
-import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-home',
@@ -11,18 +12,18 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  veiculo:any ={
+    modelo:null,
+    marca:null,
+    cor:null
+  }
+  concessionaria: any=[];
 
-  pokemon:any = {
-    nome: null,
-    poder: null
-  };
-
-  constructor( 
-    public crudService: CrudService
-  ){ }
-
-  enviar() {
-    this.crudService.insert(this.pokemon, 'pokemons');
+  adicionar(){
+    this.concessionaria.push(...this.veiculo);
+    console.log(this.concessionaria)
+ 
   }
 
+  
 }
