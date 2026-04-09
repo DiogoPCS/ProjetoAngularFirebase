@@ -1,6 +1,24 @@
 <ion-content [fullscreen]="true">
 
-    <ion-button color="secondary">Teste</ion-button>
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="4">
+            <ion-card>
+                <ion-card-content>
+                    
+                    <ion-input [(ngModel)]="this.veiculo.modelo" label="modelo" labelPlacement="stacked"></ion-input>
+                    <ion-input [(ngModel)]="this.veiculo.marca" label="marca" labelPlacement="stacked"></ion-input>
+                    <ion-input [(ngModel)]="this.veiculo.cor" label="cor" labelPlacement="stacked"></ion-input>
+                    <ion-button color="primary" fill="solid" (click)="this.adicionar()">Adicionar</ion-button>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+         <ion-col size="4">
+            <ng-container *ngFor="let veiculo of this.concessionaria">
+            <ion-item>{{ veiculo.modelo }} - {{ veiculo.marca }} - {{ veiculo.cor }}</ion-item>
+            </ng-container>
+         </ion-col>
+    </ion-row>
+
     
     
 </ion-content>
