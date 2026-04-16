@@ -1,6 +1,37 @@
 <ion-content [fullscreen]="true">
 
-    <ion-button color="secondary">Teste</ion-button>
+   <ion-grid [fixed]="true">
+  <ion-row>
+    <ion-col>
+        <ion-img src="https://i.pinimg.com/736x/f3/6b/f1/f36bf1ea2b2ecc2970014d5408875488.jpg"></ion-img>
+    </ion-col>
+    <ion-col>
+        <h1>Cria Conta</h1>
+  <ion-list>
+  <ion-item>
+    <ion-input label="nome"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input label="e-mail" placeholder="Enter company name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input label="senha" value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input label="confirma senha" value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-button> Criar Conta </ion-button>
+  </ion-item>
+</ion-list>
+    </ion-col>
+    
+  </ion-row>
+</ion-grid>
     
     
 </ion-content>
