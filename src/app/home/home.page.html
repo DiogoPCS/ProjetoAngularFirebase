@@ -1,37 +1,43 @@
 <ion-content [fullscreen]="true">
 
-   <ion-grid [fixed]="true">
-  <ion-row>
+   <ion-grid>
+  <ion-row class="ion-justify-content-center">
+    <ion-col><img src="https://i.pinimg.com/1200x/f6/3a/d9/f63ad96e78f4ba85b5056a30b5eee00a.jpg"></ion-col>
     <ion-col>
-        <ion-img src="https://i.pinimg.com/736x/f3/6b/f1/f36bf1ea2b2ecc2970014d5408875488.jpg"></ion-img>
-    </ion-col>
-    <ion-col>
-        <h1>Cria Conta</h1>
+       <ion-label class="titulo">Criar Conta</ion-label>
+            <ion-list>
   <ion-list>
-  <ion-item>
-    <ion-input label="nome"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-input label="Nome"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-input label="e-mail" placeholder="Enter company name"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-input label="E-mail"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-input label="senha" value=""></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-input label="Senha" type="password" value="password"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-input label="confirma senha" value=""></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-input label="Confirmar Senha" type="password" value="password"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-button> Criar Conta </ion-button>
-  </ion-item>
+    <ion-button class="ion-margin-top" color="primary">criar conta</ion-button>
+
+</ion-list>
+<ion-label class="login"> Login com: </ion-label>
+<ion-button >facebook</ion-button>
+<ion-button >twitter</ion-button>
+<ion-button >google</ion-button>
+
 </ion-list>
     </ion-col>
-    
   </ion-row>
 </ion-grid>
+
+
+
     
     
 </ion-content>
